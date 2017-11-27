@@ -1,0 +1,7 @@
+{
+  "name": "polymer2-medias-center",
+  "short_name": "polymer2-medias-center",
+  "description": "A [Polymer 2] medias center to pool images and videos through a carousel",
+  "start_url": "/",
+  "display": "standalone"
+}
