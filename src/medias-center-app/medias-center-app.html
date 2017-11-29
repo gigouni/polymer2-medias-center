@@ -1,32 +1,71 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 
-<dom-module id="medias-center-app">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <h2>Hello [[prop1]]!</h2>
-  </template>
+<link rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 
-  <script>
-    /**
-     * @customElement
-     * @polymer
-     */
-    class MediasCenterApp extends Polymer.Element {
-      static get is() { return 'medias-center-app'; }
-      static get properties() {
-        return {
-          prop1: {
-            type: String,
-            value: 'medias-center-app'
-          }
-        };
-      }
+
+<dom-module id="medias-center-app">
+    <template>
+  <style>
+     :host {
+      display: block;
+      --app-primary-color: #F44336;
+      --app-grey-dark-color: #BDBDBD;
+      --app-grey-light-color: #EEEEEE;
+      --app-header-font-color: #FFFFFF;
+    }
+    app-drawer-layout:not([narrow]) [drawer-toggle] {
+      display: none;
     }
 
-    window.customElements.define(MediasCenterApp.is, MediasCenterApp);
-  </script>
+    app-drawer-layout {
+      background-color: var(--app-grey-light-color);
+    }
+
+    app-header {
+      color: var(--app-header-font-color);
+      background-color: var(--app-primary-color);
+      box-shadow: 0 2px 1px rgba(0, 0, 0, 0.26);
+    }
+  </style>
+
+
+    <app-drawer-layout fullbleed force-narrow>
+      <app-header-layout has-scrolling-region>
+        <app-header slot='header' condenses reveals effects='waterfall'>
+          <app-toolbar>
+            <div main-title>Medias center</div>
+          </app-toolbar>
+        </app-header>
+        <h2>Contenu à venir...</h2>
+      </app-header-layout>
+    </app-drawer-layout>
+
+  </template>
+
+    <script>
+        /**
+         * @customElement
+         * @polymer
+         */
+        class MediasCenterApp extends Polymer.Element {
+            static get is() {
+                return 'medias-center-app';
+            }
+            static get properties() {
+                return {
+                    prop1: {
+                        type: String,
+                        value: 'medias-center-app'
+                    }
+                };
+            }
+        }
+
+        window.customElements.define(MediasCenterApp.is, MediasCenterApp);
+    </script>
 </dom-module>
