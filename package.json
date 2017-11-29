@@ -1,27 +1,31 @@
 {
-  "name": "polymer2-medias-center",
-  "version": "1.0.0",
-  "description": "A medias center to pool images and videos through a carousel",
-  "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
-  "scripts": {
-    "dev": "npm run install_deps && polymer serve",
-    "install_deps": "npm i && bower i",
-    "lint": "polymer lint",
-    "test": "polymer test",
-    "clean": "rm -rf node_modules bower_components"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gigouni/polymer2-medias-center.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/gigouni/polymer2-medias-center/issues"
-  },
-  "homepage": "https://github.com/gigouni/polymer2-medias-center#readme"
+    "name": "polymer2-medias-center",
+    "version": "1.0.0",
+    "description": "A medias center to pool images and videos through a carousel",
+    "main": "index.js",
+    "directories": {
+        "test": "test"
+    },
+    "scripts": {
+        "dev": "npm run install_deps && ./node_modules/.bin/polymer serve",
+        "install_deps": "npm i && ./node_modules/.bin/bower i",
+        "lint": "./node_modules/.bin/polymer lint",
+        "test": "./node_modules/.bin/polymer test",
+        "clean": "rm -rf node_modules bower_components"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/gigouni/polymer2-medias-center.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/gigouni/polymer2-medias-center/issues"
+    },
+    "homepage": "https://github.com/gigouni/polymer2-medias-center#readme",
+    "dependencies": {
+        "bower": "^1.8.2",
+        "polymer-cli": "^1.5.7"
+    }
 }
