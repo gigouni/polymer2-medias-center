@@ -1,0 +1,28 @@
+{
+  "name": "polymer2-medias-center",
+  "version": "1.0.0",
+  "description": "A medias center to pool images and videos through a carousel",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "polymer serve",
+    "dev": "npm run install_deps && npm run start",
+    "install_deps": "npm i && bower i",
+    "lint": "polymer lint",
+    "test": "polymer test",
+    "clean": "rm -rf node_modules bower_components"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gigouni/polymer2-medias-center.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gigouni/polymer2-medias-center/issues"
+  },
+  "homepage": "https://github.com/gigouni/polymer2-medias-center#readme"
+}
