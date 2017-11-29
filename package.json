@@ -7,8 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "start": "polymer serve",
-    "dev": "npm run install_deps && npm run start",
+    "dev": "npm run install_deps && polymer serve",
     "install_deps": "npm i && bower i",
     "lint": "polymer lint",
     "test": "polymer test",
