@@ -7,6 +7,7 @@
 <link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
 
 <dom-module id="medias-center-app">
     <template>
@@ -31,6 +32,9 @@
       background-color: var(--app-primary-color);
       box-shadow: 0 2px 1px rgba(0, 0, 0, 0.26);
     }
+    paper-card {
+      max-width: 500px;
+    }
   </style>
 
 
@@ -42,6 +46,9 @@
           </app-toolbar>
         </app-header>
         <h2>Contenu à venir...</h2>
+
+        <paper-card image="../photos/example1.jpg"></paper-card>
+
       </app-header-layout>
     </app-drawer-layout>
 
