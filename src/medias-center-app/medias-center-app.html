@@ -6,6 +6,8 @@
 <link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
 <link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+
 
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
 
@@ -14,9 +16,8 @@
   <style>
      :host {
       display: block;
-      --app-primary-color: #F44336;
-      --app-grey-dark-color: #BDBDBD;
-      --app-grey-light-color: #EEEEEE;
+      --app-primary-color: #5e42a6;
+      --app-primary-dark-color: #312450;
       --app-header-font-color: #FFFFFF;
     }
     app-drawer-layout:not([narrow]) [drawer-toggle] {
@@ -30,10 +31,20 @@
     app-header {
       color: var(--app-header-font-color);
       background-color: var(--app-primary-color);
-      box-shadow: 0 2px 1px rgba(0, 0, 0, 0.26);
     }
-    paper-card {
-      max-width: 500px;
+
+    .images-container {
+      display: flex;
+      flow-wrap: inline;
+      padding-top: 15px;
+      width: 750px;
+      margin: auto;
+    }
+
+    .image-tile {
+      width: 200px;
+      padding: 5px;
+      @apply --layout-flex;
     }
   </style>
 
@@ -45,8 +56,39 @@
             <div main-title>Medias center</div>
           </app-toolbar>
         </app-header>
-
-        <paper-card image="src/photos/example1.jpg"></paper-card>
+        
+        <div class="images-container">
+          <div class="image-tile">
+            <paper-card image="src/photos/example1.jpg"></paper-card>
+          </div>
+  
+          <div class="image-tile">
+            <paper-card image="src/photos/example2.jpg"></paper-card>
+          </div>
+  
+          <div class="image-tile">
+            <paper-card image="src/photos/example3.jpg"></paper-card>
+          </div>
+  
+          <div class="image-tile">
+            <paper-card image="src/photos/example4.jpg"></paper-card>
+          </div>
+          <div class="image-tile">
+            <paper-card image="src/photos/example1.jpg"></paper-card>
+          </div>
+  
+          <div class="image-tile">
+            <paper-card image="src/photos/example2.jpg"></paper-card>
+          </div>
+  
+          <div class="image-tile">
+            <paper-card image="src/photos/example3.jpg"></paper-card>
+          </div>
+  
+          <div class="image-tile">
+            <paper-card image="src/photos/example4.jpg"></paper-card>
+          </div>
+        </div>
 
       </app-header-layout>
     </app-drawer-layout>
