@@ -7,104 +7,94 @@
 <link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
 
 <dom-module id="medias-center-app">
     <template>
-  <style>
-     :host {
-      display: block;
-      --app-primary-color: #5e42a6;
-      --app-primary-dark-color: #312450;
-      --app-header-font-color: #FFFFFF;
-    }
-    
-    app-drawer-layout:not([narrow]) [drawer-toggle] {
-      display: none;
-    }
+        <style>
+             :host {
+                display: block;
+                --app-primary-color: #5e42a6;
+                --app-primary-dark-color: #312450;
+                --app-header-font-color: #FFFFFF;
+            }
 
-    app-drawer-layout {
-      background-color: var(--app-grey-light-color);
-    }
+            app-drawer-layout:not([narrow]) [drawer-toggle] {
+                display: none;
+            }
 
-    app-header {
-      color: var(--app-header-font-color);
-      background-color: var(--app-primary-color);
-    }
+            app-drawer-layout {
+                background-color: var(--app-grey-light-color);
+            }
 
-    .images-container {
-      display: flex;
-      flex-flow: row wrap;
-      padding-top: 15px;
-      width: 90%;
-      margin: auto;
-    }
+            app-header {
+                color: var(--app-header-font-color);
+                background-color: var(--app-primary-color);
+            }
 
-    .image-tile {
-      min-width: 300px;
-      max-width: 300px;
-      padding: 5px;
-      @apply --layout-flex;
-    }
-  </style>
+            .images-container {
+                display: flex;
+                flex-flow: row wrap;
+                padding-top: 15px;
+                width: 95%;
+                margin: auto;
+                justify-content: center;
+            }
 
-
-    <app-drawer-layout fullbleed force-narrow>
-      <app-header-layout has-scrolling-region>
-        <app-header slot='header' condenses reveals effects='waterfall'>
-          <app-toolbar>
-            <div main-title>Medias center</div>
-          </app-toolbar>
-        </app-header>
-        
-        <div class="images-container">
-          
-          <template is='dom-repeat' items='[[medias]]'>
-            <div class="image-tile">
-                <paper-card image="[[item.path]]"></paper-card>
-            </div>
-          </template>
+            .image-tile {
+                min-width: 300px;
+                max-width: 300px;
+                padding: 5px;
+            }
+        </style>
 
 
-    <div class="image-tile">
-        <paper-card image="src/photos/example1.jpg"></paper-card>
-    </div>
+        <app-drawer-layout fullbleed force-narrow>
+            <app-header-layout has-scrolling-region>
+                <app-header slot='header' condenses reveals effects='waterfall'>
+                    <app-toolbar>
+                        <div main-title>Medias center</div>
+                    </app-toolbar>
+                </app-header>
 
-    <div class="image-tile">
-        <paper-card image="src/photos/example2.jpg"></paper-card>
-    </div>
+                <div class="images-container">
 
-    <div class="image-tile">
-        <paper-card image="src/photos/example3.jpg"></paper-card>
-    </div>
+                    <div class="image-tile">
+                        <paper-card image="src/photos/example1.jpg"></paper-card>
+                    </div>
 
-    <div class="image-tile">
-        <paper-card image="src/photos/example4.jpg"></paper-card>
-    </div>
-    <div class="image-tile">
-        <paper-card image="src/photos/example1.jpg"></paper-card>
-    </div>
+                    <div class="image-tile">
+                        <paper-card image="src/photos/example2.jpg"></paper-card>
+                    </div>
 
-    <div class="image-tile">
-        <paper-card image="src/photos/example2.jpg"></paper-card>
-    </div>
+                    <div class="image-tile">
+                        <paper-card image="src/photos/example3.jpg"></paper-card>
+                    </div>
 
-    <div class="image-tile">
-        <paper-card image="src/photos/example3.jpg"></paper-card>
-    </div>
+                    <div class="image-tile">
+                        <paper-card image="src/photos/example4.jpg"></paper-card>
+                    </div>
+                    <div class="image-tile">
+                        <paper-card image="src/photos/example1.jpg"></paper-card>
+                    </div>
 
-    <div class="image-tile">
-        <paper-card image="src/photos/example4.jpg"></paper-card>
-    </div>
-    </div>
+                    <div class="image-tile">
+                        <paper-card image="src/photos/example2.jpg"></paper-card>
+                    </div>
 
-    </app-header-layout>
-    </app-drawer-layout>
+                    <div class="image-tile">
+                        <paper-card image="src/photos/example3.jpg"></paper-card>
+                    </div>
 
-    <iron-ajax id='getMedias' method='GET' handle-as='json' on-response='handleMediasResponse' on-error='handleGetMediasError' content-type='application/json'>
-    </iron-ajax>
+                    <div class="image-tile">
+                        <paper-card image="src/photos/example4.jpg"></paper-card>
+                    </div>
+                
+                </div>
+
+            </app-header-layout>
+        </app-drawer-layout>
 
     </template>
 
