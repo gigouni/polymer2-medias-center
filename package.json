@@ -11,7 +11,8 @@
         "install_deps": "npm i && ./node_modules/.bin/bower i",
         "lint": "./node_modules/.bin/polymer lint",
         "test": "./node_modules/.bin/polymer test",
-        "clean": "rm -rf node_modules bower_components"
+        "clean": "rm -rf node_modules bower_components",
+        "dev:backend": "./node_modules/.bin/swagger project start backend"
     },
     "repository": {
         "type": "git",
@@ -26,6 +27,7 @@
     "homepage": "https://github.com/gigouni/polymer2-medias-center#readme",
     "dependencies": {
         "bower": "^1.8.2",
-        "polymer-cli": "^1.5.7"
+        "polymer-cli": "^1.5.7",
+        "swagger": "^0.7.5"
     }
 }
