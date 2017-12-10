@@ -1,5 +1,4 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
-
 <link rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
 <link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
@@ -59,46 +58,11 @@
                 </app-header>
 
                 <div class="images-container">
-
-                    <template is='dom-repeat' items='[[photos]]'>
-
+                    <template is="dom-repeat" items="[[photos]]">
                         <div class="image-tile">
                             <paper-card image="[[item]]"></paper-card>
                         </div>
-
                     </template>
-                            
-                    <!--<div class="image-tile">
-                        <paper-card image="src/photos/example1.jpg"></paper-card>
-                    </div>
-
-                    <div class="image-tile">
-                        <paper-card image="src/photos/example2.jpg"></paper-card>
-                    </div>
-
-                    <div class="image-tile">
-                        <paper-card image="src/photos/example3.jpg"></paper-card>
-                    </div>
-
-                    <div class="image-tile">
-                        <paper-card image="src/photos/example4.jpg"></paper-card>
-                    </div>
-                    <div class="image-tile">
-                        <paper-card image="src/photos/example1.jpg"></paper-card>
-                    </div>
-
-                    <div class="image-tile">
-                        <paper-card image="src/photos/example2.jpg"></paper-card>
-                    </div>
-
-                    <div class="image-tile">
-                        <paper-card image="src/photos/example3.jpg"></paper-card>
-                    </div>
-
-                    <div class="image-tile">
-                        <paper-card image="src/photos/example4.jpg"></paper-card>
-                    </div>-->
-
                 </div>
 
             </app-header-layout>
@@ -123,9 +87,7 @@
             }
             ready() {
                 super.ready()
-                this.getPhotos().completes.then(() => {
-                    console.log('Over')
-                })
+                this.getPhotos().completes
             }
             handlePhotosResponse(data) {
                 this.photos = data.detail.response

@@ -9,7 +9,7 @@
     "scripts": {
         "start": "npm run install_deps && ./node_modules/.bin/polymer serve",
         "install_deps": "npm i && ./node_modules/.bin/bower i",
-        "check": "./node_modules/.bin/polymer lint --fix",
+        "check": "./node_modules/.bin/polymer lint",
         "test": "./node_modules/.bin/polymer test",
         "clean": "rm -rf node_modules bower_components",
         "dev:backend": "cd express && npm run start"
