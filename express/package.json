@@ -4,12 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm i && node index.js"
+    "start": "npm i && node index.js | ./node_modules/.bin/bunyan -o short",
+    "check": "./node_modules/.bin/eslint *.js **/*.js --fix"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bunyan": "^1.8.12"
+  },
+  "devDependencies": {
+    "eslint": "^4.13.0",
+    "eslint-config-google": "^0.9.1"
   }
 }

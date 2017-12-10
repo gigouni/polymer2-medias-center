@@ -7,7 +7,7 @@
 <link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
-
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
 
 <dom-module id="medias-center-app">
@@ -52,7 +52,7 @@
 
         <app-drawer-layout fullbleed force-narrow>
             <app-header-layout has-scrolling-region>
-                <app-header slot='header' condenses reveals effects='waterfall'>
+                <app-header slot="header" condenses reveals effects="waterfall">
                     <app-toolbar>
                         <div main-title>Medias center</div>
                     </app-toolbar>
@@ -60,7 +60,15 @@
 
                 <div class="images-container">
 
-                    <div class="image-tile">
+                    <template is='dom-repeat' items='[[photos]]'>
+
+                        <div class="image-tile">
+                            <paper-card image="[[item]]"></paper-card>
+                        </div>
+
+                    </template>
+                            
+                    <!--<div class="image-tile">
                         <paper-card image="src/photos/example1.jpg"></paper-card>
                     </div>
 
@@ -89,12 +97,15 @@
 
                     <div class="image-tile">
                         <paper-card image="src/photos/example4.jpg"></paper-card>
-                    </div>
-                
+                    </div>-->
+
                 </div>
 
             </app-header-layout>
         </app-drawer-layout>
+
+        <iron-ajax id="getPhotos" method="GET" handle-as="json" on-response="handlePhotosResponse" content-type="application/json">
+        </iron-ajax>
 
     </template>
 
@@ -109,6 +120,19 @@
             }
             static get properties() {
                 return {}
+            }
+            ready() {
+                super.ready()
+                this.getPhotos().completes.then(() => {
+                    console.log('Over')
+                })
+            }
+            handlePhotosResponse(data) {
+                this.photos = data.detail.response
+            }
+            getPhotos() {
+                this.$.getPhotos.url = "http://127.0.0.1:3000/api/images"
+                return this.$.getPhotos.generateRequest()
             }
         }
 

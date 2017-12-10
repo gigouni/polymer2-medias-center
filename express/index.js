@@ -8,10 +8,16 @@ const LOG = BUNYAN.createLogger({
 
 const PATH = 'src/photos/'
 
-app.get('/images', (req, res) => getPath().then(paths => res.send(paths)))
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+    next()
+})
+
+app.get('/api/images', (req, res) => getPath().then(paths => res.send(paths)))
 
 function getPath() {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
         let paths = []
         FS.readdir('../src/photos/', (err, files) => {
             files.forEach(filename => paths.push(`${PATH}${filename}`))

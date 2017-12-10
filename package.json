@@ -7,12 +7,12 @@
         "test": "test"
     },
     "scripts": {
-        "dev": "npm run install_deps && ./node_modules/.bin/polymer serve",
+        "start": "npm run install_deps && ./node_modules/.bin/polymer serve",
         "install_deps": "npm i && ./node_modules/.bin/bower i",
-        "lint": "./node_modules/.bin/polymer lint",
+        "check": "./node_modules/.bin/polymer lint --fix",
         "test": "./node_modules/.bin/polymer test",
         "clean": "rm -rf node_modules bower_components",
-        "dev:backend": "./node_modules/.bin/swagger project start backend"
+        "dev:backend": "cd express && npm run start"
     },
     "repository": {
         "type": "git",
