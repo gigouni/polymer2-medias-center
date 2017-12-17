@@ -19,7 +19,7 @@ app.get('/api/images', (req, res) => getPath().then(paths => res.send(paths)))
 function getPath() {
     return new Promise(resolve => {
         let paths = []
-        FS.readdir('../src/photos/', (err, files) => {
+        FS.readdir('photos/', (err, files) => {
             files.forEach(filename => paths.push(`${PATH}${filename}`))
             LOG.info(`Read images: ${paths}`)
             resolve(paths)
