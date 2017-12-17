@@ -7,19 +7,18 @@
         "test": "test"
     },
     "scripts": {
-        "start": "npm run install_deps && ./node_modules/.bin/polymer serve",
+        "start": "npm run install_deps && ./node_modules/.bin/polymer serve --hostname 0.0.0.0 --port 8001",
         "install_deps": "npm i && ./node_modules/.bin/bower i",
         "check": "./node_modules/.bin/polymer lint",
         "test": "./node_modules/.bin/polymer test",
-        "clean": "rm -rf node_modules bower_components",
-        "dev:backend": "cd express && npm run start"
+        "clean": "rm -rf node_modules bower_components"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/gigouni/polymer2-medias-center.git"
     },
     "keywords": [],
-    "author": "",
+    "author": "Nicolas GIGOU",
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/gigouni/polymer2-medias-center/issues"
@@ -27,7 +26,6 @@
     "homepage": "https://github.com/gigouni/polymer2-medias-center#readme",
     "dependencies": {
         "bower": "^1.8.2",
-        "polymer-cli": "^1.5.7",
-        "swagger": "^0.7.5"
+        "polymer-cli": "^1.5.7"
     }
 }
