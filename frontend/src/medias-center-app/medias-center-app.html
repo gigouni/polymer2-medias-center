@@ -93,7 +93,7 @@
                 this.photos = data.detail.response
             }
             getPhotos() {
-                this.$.getPhotos.url = "http://127.0.0.1:3000/api/images"
+                this.$.getPhotos.url = "http://127.0.0.1:8002/api/images"
                 return this.$.getPhotos.generateRequest()
             }
         }
