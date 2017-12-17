@@ -1,5 +1,5 @@
 {
-  "name": "express",
+  "name": "medias-center-backend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,7 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bunyan": "^1.8.12"
+    "bunyan": "^1.8.12",
+    "express": "^4.16.2"
   },
   "devDependencies": {
     "eslint": "^4.13.0",

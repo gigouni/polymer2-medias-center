@@ -1,5 +1,5 @@
 {
-    "name": "polymer2-medias-center",
+    "name": "medias-center-frontend",
     "version": "1.0.0",
     "description": "A medias center to pool images and videos through a carousel",
     "main": "index.js",
