@@ -45,7 +45,6 @@ module.exports = {
         "computed-property-spacing": "error",
         "consistent-return": "error",
         "consistent-this": "error",
-        "curly": "error",
         "default-case": "error",
         "dot-location": "error",
         "dot-notation": "error",
@@ -80,7 +79,6 @@ module.exports = {
         "init-declarations": "error",
         "jsx-quotes": "error",
         "key-spacing": "error",
-        "keyword-spacing": "error",
         "line-comment-position": "error",
         "linebreak-style": [
             "error",
