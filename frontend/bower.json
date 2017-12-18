@@ -1,5 +1,5 @@
 {
-    "name": "polymer2-medias-center",
+    "name": "medias-center-frontend",
     "description": "A [Polymer 2] medias center to pool images and videos through a carousel",
     "main": "index.html",
     "dependencies": {
