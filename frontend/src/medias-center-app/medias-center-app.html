@@ -73,6 +73,8 @@
 
     </template>
 
+    <script src='../../../config.js'></script>
+
     <script>
         /**
          * @customElement
@@ -93,7 +95,7 @@
                 this.photos = data.detail.response
             }
             getPhotos() {
-                this.$.getPhotos.url = "http://127.0.0.1:8002/api/images"
+                this.$.getPhotos.url = `${window.config.raspLocalIp}:${raspBackPort}/api/images`
                 return this.$.getPhotos.generateRequest()
             }
         }
