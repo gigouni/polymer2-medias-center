@@ -3,7 +3,7 @@
  * @author Nicolas GIGOU <nicolas.gigou@gmail.com>
  */
 
- const CONFIG = {
+module.exports = {
     raspLocalIp: "192.168.1.49",
     raspPublicIp: "176.140.18.135",
     raspFrontPort: 8001,
@@ -11,5 +11,3 @@
     raspPhotosPathInBackend: 'photos/',
     raspPhotosPathInBackendFromFrontend: '../backend/photos/'
 }
-
-window.config = CONFIG

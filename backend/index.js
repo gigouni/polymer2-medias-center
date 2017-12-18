@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const C = require('../config')
+const CONFIG = require('../config')
 const FS = require('fs')
 const BUNYAN = require('bunyan')
 const LOG = BUNYAN.createLogger({
@@ -23,13 +23,13 @@ app.get('/api/images', (req, res) => getPath().then(paths => res.send(paths)))
 function getPath() {
     return new Promise((resolve, reject) => {
         let paths = []
-        FS.readdir(C.raspPhotosPathInBackend, (err, files) => {
+        FS.readdir(CONFIG.raspPhotosPathInBackend, (err, files) => {
             if(err) reject(new Error(`Cannot find images in backend: ${err}`))
-            files.forEach(filename => paths.push(`${C.raspPhotosPathInBackendFromFrontend}${filename}`))
+            files.forEach(filename => paths.push(`${CONFIG.raspPhotosPathInBackendFromFrontend}${filename}`))
             LOG.info(`Read images: ${paths}`)
             resolve(paths)
         })
     })
 }
 
-app.listen(C.raspBackPort, () => LOG.info(`Backend listening on port ${C.raspBackPort}!`))
+app.listen(CONFIG.raspBackPort, () => LOG.info(`Backend listening on port ${CONFIG.raspBackPort}!`))
