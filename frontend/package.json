@@ -4,6 +4,9 @@
     "description": "A medias center to pool images and videos through a carousel",
     "main": "index.js",
     "directories": {
+        "src": "src",
+        "css": "src/css",
+        "config": "../config.js",
         "test": "test"
     },
     "scripts": {
