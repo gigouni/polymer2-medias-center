@@ -73,7 +73,7 @@
 
     </template>
 
-    <script src='../../../config.js'></script>
+    <script src="../../config.js"></script>
 
     <script>
         /**
@@ -95,7 +95,7 @@
                 this.photos = data.detail.response
             }
             getPhotos() {
-                this.$.getPhotos.url = `${raspLocalIp}:${raspBackPort}/api/images`
+                this.$.getPhotos.url = `${window.config.raspLocalIp}:${window.config.raspBackPort}/api/images`
                 return this.$.getPhotos.generateRequest()
             }
         }
