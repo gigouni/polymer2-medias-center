@@ -13,11 +13,13 @@ app.use((req, res, next) => {
     next()
 })
 
-app.get('/api/images', (req, res) => getPath().then(paths => res.send(paths)))
+app.get('/api/images', (req, res) => {
+    getClientIp(req)
+    getPath().then(paths => res.send(paths))
+})
 
 /**
  * Concatenate the paths of all images to fetch it to the frontend.
- *
  * @returns {Promise.Array|Error} The list of images path if fulfilled or an error if rejected.
  */
 function getPath() {
@@ -29,10 +31,20 @@ function getPath() {
             files.forEach(filename => {
                 paths.push({path: `${CONFIG.raspPhotosPathFromFrontend}${filename}`})
             })
-            LOG.info(`Read images: ${paths}`)
+            LOG.info(`Read images: ${JSON.stringify(paths, 0, 2)}`)
             resolve(paths)
         })
     })
+}
+
+/**
+ * Display client IP to assume who's trying to access resources.
+ * @param {Object} req - The request sent by the client to access resource.
+ * @returns {*} Nothing yet.
+ */
+function getClientIp(req) {
+    let clientIp = req.headers.origin || req.headers.referer || 'unknown'
+    LOG.info(`Client trying to access resource: ${clientIp}`)
 }
 
 app.listen(CONFIG.raspBackPort, () => LOG.info(`Backend listening on port ${CONFIG.raspBackPort}!`))
