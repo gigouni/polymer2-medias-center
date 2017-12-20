@@ -25,7 +25,10 @@ function getPath() {
         let paths = []
         FS.readdir(CONFIG.raspPhotosPathFromBackend, (err, files) => {
             if(err) reject(new Error(`Cannot find images in backend: ${err}`))
-            files.forEach(filename => paths.push(`${CONFIG.raspPhotosPathFromFrontend}${filename}`))
+            if(!files) reject(new Error(`No photos found in ${CONFIG.raspPhotosPathFromBackend}.`))
+            files.forEach(filename => {
+                paths.push({path: `${CONFIG.raspPhotosPathFromFrontend}${filename}`})
+            })
             LOG.info(`Read images: ${paths}`)
             resolve(paths)
         })
