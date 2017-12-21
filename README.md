@@ -1,13 +1,20 @@
 # Medias center
 
-## Frontend
+A JS project to share photos through a web interface, with Polymer 2 for the frontend and NodeJS 8 for the backend. 
+Still not impressive but will pool other famous and innovative technologies (Redux, Docker, Sentry, ...).
+
+Stay tuned!
+
+## Getting started
+
+__Frontend__
 
 ```shell
-npm run start
+cd frontend && npm run start
 ```
 
-## Backend
+__Backend__
 
 ```shell
-npm run start
+cd backend && npm run start
 ```
