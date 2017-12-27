@@ -1,0 +1,48 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Medias Center Backend
+host: localhost:10010
+basePath: /api
+schemes:
+  - http
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /photos:
+    x-swagger-router-controller: photos
+    get:
+      description: Returns all photos properties to the caller, without any pagination.
+      operationId: getAllPhotos
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/AllPhotosResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/PhotosErrorResponse"
+  /swagger:
+    x-swagger-pipe: swagger_raw
+definitions:
+  Photo:
+    type: object
+    required:
+      - path
+    properties:
+      path:
+        type: string
+  EmptyObject:
+    type: object
+  AllPhotosResponse:
+    type: array
+    items:
+      $ref: "#/definitions/Photo"
+  PhotosErrorResponse:
+      type: array
+      items:
+        $ref: "#/definitions/EmptyObject"
