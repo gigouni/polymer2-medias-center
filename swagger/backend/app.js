@@ -1,5 +1,10 @@
 
 
+const BUNYAN = require('bunyan')
+const LOG = BUNYAN.createLogger({
+    name: 'Swagger::App'
+})
+
 let SwaggerExpress = require('swagger-express-mw');
 let app = require('express')();
 module.exports = app
@@ -16,10 +21,10 @@ SwaggerExpress.create(config, (err, swaggerExpress) => {
     // Install middleware
     swaggerExpress.register(app);
 
-    let port = process.env.PORT || 10010;
+    let port = process.env.PORT || 8002;
     app.listen(port);
 
     if (swaggerExpress.runner.swagger.paths['/hello']) {
-        console.log(`try this:\ncurl http://127.0.0.1:${port}/hello?name=Scott`);
+        LOG.info(`try this:\ncurl http://127.0.0.1:${port}/hello?name=Scott`);
     }
 });
