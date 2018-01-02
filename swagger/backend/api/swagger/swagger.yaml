@@ -12,24 +12,24 @@ consumes:
 produces:
   - application/json
 paths:
-  /photos:
-    x-swagger-router-controller: photos
+  /medias:
+    x-swagger-router-controller: medias
     get:
-      description: Returns all photos properties to the caller, without any pagination.
-      operationId: getAllPhotos
+      description: Returns all medias properties to the caller, without any pagination.
+      operationId: getAllMedias
       responses:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/AllPhotosResponse"
+            $ref: "#/definitions/AllMediasResponse"
         default:
           description: Error
           schema:
-            $ref: "#/definitions/PhotosErrorResponse"
+            $ref: "#/definitions/MediasErrorResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 definitions:
-  Photo:
+  Media:
     type: object
     required:
       - path
@@ -38,11 +38,11 @@ definitions:
         type: string
   EmptyObject:
     type: object
-  AllPhotosResponse:
+  AllMediasResponse:
     type: array
     items:
-      $ref: "#/definitions/Photo"
-  PhotosErrorResponse:
+      $ref: "#/definitions/Media"
+  MediasErrorResponse:
       type: array
       items:
         $ref: "#/definitions/EmptyObject"
