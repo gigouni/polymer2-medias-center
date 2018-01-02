@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [FRONT][ADD ] Content pagination
 - [FRONT][ADD ] Spinner for resources requesting
 - [FRONT][EDIT] Switch app spinner for funnier one
-- [BACK ][EDIT] Swagger API
+- [BACK ][EDIT] [Swagger](https://swagger.io/) API
 - [BOTH ][EDIT] Update CHANGELOG
 - [BOTH ][EDIT] Update README
 - [BOTH ][EDIT] Homogenize .eslintrc
