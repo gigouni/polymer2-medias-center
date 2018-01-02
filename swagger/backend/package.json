@@ -17,6 +17,8 @@
   },
   "scripts": {
     "start": "node app.js",
+    "check": "eslint *.js **/*.js --fix",
+    "edit": "swagger project edit",
     "test": "swagger project test"
   }
 }
