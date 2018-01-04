@@ -9,9 +9,6 @@
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
 
-
-<link rel="import" href="../css/modal.css">
-
 <dom-module id="medias-center-app">
     <template>
         <style>
@@ -206,6 +203,14 @@
             ready() {
                 super.ready()
                 this.getMedias().completes
+
+                // Close modal if ESC is keydowned
+                document.addEventListener('keydown', event => {
+                    if(event && event.keyCode === 27) {
+                        console.log('Escape is keydown right now!')
+                        this.closeModal()
+                    }
+                })
             }
             handleMediasResponse(data) {
                 this.medias = data.detail.response
@@ -215,7 +220,6 @@
                     `${window.config.LOCAL_HOST}:${window.config.BACKEND_PORT}${window.config.API_ALL_MEDIAS}`
                 return this.$.getMedias.generateRequest()
             }
-
             openModal(e) {
                 let mediaSrc = e.target.shadowRoot.querySelector('iron-image').shadowRoot.querySelector('#img')
                     .getAttribute('src')
@@ -223,7 +227,6 @@
                 this.$.img01.src = mediaSrc
                 this.$.photoModalCaption.innerHTML = "TOTOTOTOOT"
             }
-
             closeModal() {
                 this.$.photoModal.style.display = "none"
             }
