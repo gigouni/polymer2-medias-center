@@ -65,9 +65,16 @@
                 <div class="images-container">
                     <template is="dom-repeat" items="[[medias]]">
                         <div class="image-tile">
-                            <paper-card image="[[item.path]]"></paper-card>
+                            <paper-card image="[[item.path]]" on-click="openModal"></paper-card>
                         </div>
                     </template>
+                </div>
+
+                <!-- The Modal -->
+                <div id="photoModal" class="modal">
+                    <span id="photoModalClose" class="close" on-click="closeModal">&times;</span>
+                    <img class="modal-content" id="img01">
+                    <div id="photoModalCaption"></div>
                 </div>
 
             </app-header-layout>
@@ -100,8 +107,20 @@
                 this.medias = data.detail.response
             }
             getMedias() {
-                this.$.getMedias.url = `${window.config.LOCAL_HOST}:${window.config.BACKEND_PORT}${window.config.API_ALL_MEDIAS}`
+                this.$.getMedias.url =
+                    `${window.config.LOCAL_HOST}:${window.config.BACKEND_PORT}${window.config.API_ALL_MEDIAS}`
                 return this.$.getMedias.generateRequest()
+            }
+
+            openModal(e) {
+                let mediaSrc = e.target.shadowRoot.querySelector('iron-image').shadowRoot.querySelector('#img').getAttribute('src')
+                this.$.photoModal.style.display = "block"
+                this.$.img01.src = mediaSrc
+                this.$.photoModalCaption.innerHTML = "TOTOTOTOOT"
+            }
+
+            closeModal() {
+                this.$.photoModal.style.display = "none"
             }
         }
 
