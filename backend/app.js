@@ -22,10 +22,10 @@ SwaggerExpress.create(config, (err, swaggerExpress) => {
     // Install middleware
     swaggerExpress.register(app)
 
-    let port = CONFIG.raspBackPort || 8002
+    let port = CONFIG.BACKEND_PORT || 8002
     app.listen(port)
 
-    if (swaggerExpress.runner.swagger.paths['/hello']) {
-        LOG.info(`try this:\ncurl http://127.0.0.1:${port}/hello?name=Scott`)
+    if (swaggerExpress.runner.swagger.paths['/medias']) {
+        LOG.info(`try this:\ncurl http://127.0.0.1:${port}/api/medias`)
     }
 })

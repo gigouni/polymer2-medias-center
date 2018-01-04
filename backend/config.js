@@ -4,7 +4,7 @@
  */
 
 module.exports = {
-    raspBackPort: 8002,
-    raspPhotosPathFromBackend: '../frontend/photos/',
-    raspPhotosPathFromFrontend: '../photos/'
+    BACKEND_PORT: 8002,
+    MEDIAS_PATH_FROM_BACKEND: '../frontend/photos/',
+    MEDIAS_PATH_FROM_FRONTEND: '../photos/'
 }

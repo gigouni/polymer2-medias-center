@@ -21,17 +21,17 @@ module.exports = {
 function getAllMedias(req, res) {
     LOG.info('In the MediasController::getAllMedias() function.')
     REQUEST_HELPER.getClientIp(req)
-    FS.readdir(CONFIG.raspPhotosPathFromBackend, (err, files) => {
+    FS.readdir(CONFIG.MEDIAS_PATH_FROM_BACKEND, (err, files) => {
         if(err) {
             LOG.error(`Cannot find images in backend: ${err}`)
             return
         }
         if(!files || files.length === 0) {
-            LOG.error(`No photos found in ${CONFIG.raspPhotosPathFromBackend}.`)
+            LOG.error(`No photos found in ${__dirname}/${CONFIG.MEDIAS_PATH_FROM_BACKEND}.`)
             return
         }
         let paths = []
-        files.forEach(filename => paths.push({path: `${CONFIG.raspPhotosPathFromFrontend}${filename}`}))
+        files.forEach(filename => paths.push({path: `${CONFIG.MEDIAS_PATH_FROM_FRONTEND}${filename}`}))
         LOG.info(`Read images: ${JSON.stringify(paths, 0, 2)}`)
         res.json(paths)
     })

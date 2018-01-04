@@ -95,7 +95,7 @@
                 this.photos = data.detail.response
             }
             getPhotos() {
-                this.$.getPhotos.url = `${window.config.raspLocalIp}:${window.config.raspBackPort}${window.config.API_ALL_MEDIAS}`
+                this.$.getPhotos.url = `${window.config.LOCAL_HOST}:${window.config.BACKEND_PORT}${window.config.API_ALL_MEDIAS}`
                 return this.$.getPhotos.generateRequest()
             }
         }

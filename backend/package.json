@@ -1,21 +1,25 @@
 {
-  "name": "medias-center-backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "npm i && node index.js | ./node_modules/.bin/bunyan -o short",
-    "check": "./node_modules/.bin/eslint *.js **/*.js --fix"
-  },
+  "name": "backend",
+  "version": "0.0.1",
+  "private": true,
+  "description": "New Swagger API Project",
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "",
+  "main": "app.js",
   "dependencies": {
     "bunyan": "^1.8.12",
-    "express": "^4.16.2"
+    "express": "^4.12.3",
+    "swagger-express-mw": "^0.1.0"
   },
   "devDependencies": {
-    "eslint": "^4.13.0",
-    "eslint-config-google": "^0.9.1"
+    "should": "^7.1.0",
+    "supertest": "^1.0.0"
+  },
+  "scripts": {
+    "start": "node app.js | bunyan -o short",
+    "check": "eslint *.js **/*.js --fix",
+    "edit": "swagger project edit",
+    "test": "swagger project test"
   }
 }

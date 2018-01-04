@@ -4,8 +4,9 @@
  */
 
 const CONFIG = {
-    raspLocalIp: "http://176.140.18.135",
-    raspBackPort: 8002
+    LOCAL_HOST: 'http://176.140.18.135',
+    BACKEND_PORT: 8002,
+    API_ALL_MEDIAS: '/api/medias'
 }
 
 window.config = CONFIG
