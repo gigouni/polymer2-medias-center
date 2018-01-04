@@ -58,7 +58,7 @@
                 </app-header>
 
                 <div class="images-container">
-                    <template is="dom-repeat" items="[[photos]]">
+                    <template is="dom-repeat" items="[[medias]]">
                         <div class="image-tile">
                             <paper-card image="[[item.path]]"></paper-card>
                         </div>
@@ -68,7 +68,7 @@
             </app-header-layout>
         </app-drawer-layout>
 
-        <iron-ajax id="getPhotos" method="GET" handle-as="json" on-response="handlePhotosResponse" content-type="application/json">
+        <iron-ajax id="getMedias" method="GET" handle-as="json" on-response="handleMediasResponse" content-type="application/json">
         </iron-ajax>
 
     </template>
@@ -89,14 +89,14 @@
             }
             ready() {
                 super.ready()
-                this.getPhotos().completes
+                this.getMedias().completes
             }
-            handlePhotosResponse(data) {
-                this.photos = data.detail.response
+            handleMediasResponse(data) {
+                this.medias = data.detail.response
             }
-            getPhotos() {
-                this.$.getPhotos.url = `${window.config.LOCAL_HOST}:${window.config.BACKEND_PORT}${window.config.API_ALL_MEDIAS}`
-                return this.$.getPhotos.generateRequest()
+            getMedias() {
+                this.$.getMedias.url = `${window.config.LOCAL_HOST}:${window.config.BACKEND_PORT}${window.config.API_ALL_MEDIAS}`
+                return this.$.getMedias.generateRequest()
             }
         }
 
