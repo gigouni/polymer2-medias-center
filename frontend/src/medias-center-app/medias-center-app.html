@@ -166,7 +166,7 @@
                 <div class="images-container">
                     <template is="dom-repeat" items="[[medias]]">
                         <div class="image-tile">
-                            <paper-card image="[[item.path]]" on-click="openModal"></paper-card>
+                            <paper-card image="[[item.path]]" alt="[[item.filename]]" on-click="openModal"></paper-card>
                         </div>
                     </template>
                 </div>
@@ -207,7 +207,6 @@
                 // Close modal if ESC is keydowned
                 document.addEventListener('keydown', event => {
                     if(event && event.keyCode === 27) {
-                        console.log('Escape is keydown right now!')
                         this.closeModal()
                     }
                 })
@@ -221,11 +220,10 @@
                 return this.$.getMedias.generateRequest()
             }
             openModal(e) {
-                let mediaSrc = e.target.shadowRoot.querySelector('iron-image').shadowRoot.querySelector('#img')
-                    .getAttribute('src')
+                const IMG = e.target.shadowRoot.querySelector('iron-image').shadowRoot.querySelector('#img')
                 this.$.photoModal.style.display = "block"
-                this.$.img01.src = mediaSrc
-                this.$.photoModalCaption.innerHTML = "TOTOTOTOOT"
+                this.$.img01.src = IMG.getAttribute('src')
+                this.$.photoModalCaption.innerHTML = IMG.getAttribute('alt')
             }
             closeModal() {
                 this.$.photoModal.style.display = "none"
