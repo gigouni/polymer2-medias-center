@@ -1,6 +1,7 @@
 'use strict'
 
 const CONFIG = require('../../config')
+const REQUEST_HELPER = require('../helpers/requestHelper')
 const FS = require('fs')
 const BUNYAN = require('bunyan')
 const LOG = BUNYAN.createLogger({
@@ -11,8 +12,15 @@ module.exports = {
     getAllMedias: getAllMedias
 }
 
+/**
+ * Concatenate the paths of all images to fetch it to the frontend.
+ * @param {Object} req - The request sent by the client to access resource.
+ * @param {Object} res - The result of the sent request.
+ * @returns {Array|Error} The list of images paths or an error.
+ */
 function getAllMedias(req, res) {
     LOG.info('In the MediasController::getAllMedias() function.')
+    REQUEST_HELPER.getClientIp(req)
     FS.readdir(CONFIG.raspPhotosPathFromBackend, (err, files) => {
         if(err) {
             LOG.error(`Cannot find images in backend: ${err}`)

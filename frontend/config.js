@@ -5,7 +5,9 @@
 
 const CONFIG = {
     raspLocalIp: "http://127.0.0.1",
-    raspBackPort: 8002
+    raspBackPort: 8003,
+
+    API_ALL_MEDIAS: '/api/medias'
 }
 
 window.config = CONFIG
