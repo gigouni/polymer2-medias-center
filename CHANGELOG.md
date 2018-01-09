@@ -14,12 +14,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [FRONT][ADD ] Content pagination
 - [FRONT][ADD ] Spinner for resources requesting
 - [FRONT][EDIT] Switch app spinner for funnier one
-- [BOTH ][EDIT] Update CHANGELOG
+- [BOTH ][EDIT] Update CHANGELOG (PM2, technical explanations, ...)
 - [BOTH ][EDIT] Update README
 - [BOTH ][EDIT] Homogenize .eslintrc
 - [BOTH ][ADD ] Implement Dockerfile and docker-compose.yml
 - [BOTH ][ADD ] Get stats from visits
 - [BOTH ][ADD ] Bind to [Sentry](https://sentry.io/welcome/) to catch logs through an interface
+- [FRONT][ADD ] Switch to previous/next media with arrows images/keyboard keys
+- [BOTH ][ADD ] Handle videos
+- [FRONT][ADD ] Handle gesture lib for mobile users to zoom in/out
+- [FRONT][ADD ] Handle sub-folders
+- [BOTH ][ADD ] Handle file extensions
+- [FRONT][ADD ] i18n
+- [FRONT][EDIT] Add a message when having no medias coming from backend
 
 ## Unreleased
 
