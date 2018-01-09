@@ -8,6 +8,7 @@
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="./localization-mixin.html">
 
 <dom-module id="medias-center-app">
     <template>
@@ -59,36 +60,23 @@
              */
             .modal {
                 display: none;
-                /* Hidden by default */
                 position: fixed;
-                /* Stay in place */
                 z-index: 1;
-                /* Sit on top */
                 padding-top: 100px;
-                /* Location of the box */
                 left: 0;
                 top: 64px;
                 width: 100%;
-                /* Full width */
                 height: 100%;
-                /* Full height */
                 overflow: auto;
-                /* Enable scroll if needed */
                 background-color: rgb(0, 0, 0);
-                /* Fallback color */
                 background-color: rgba(0, 0, 0, 0.9);
-                /* Black w/ opacity */
             }
-            /* Modal Content (image) */
-
             .modal-content {
                 margin: auto;
                 display: block;
                 width: 80%;
                 max-width: 700px;
             }
-            /* Caption of Modal Image */
-
             #photoModalCaption {
                 margin: auto;
                 display: block;
@@ -99,8 +87,6 @@
                 padding: 10px 0;
                 height: 150px;
             }
-            /* Add Animation */
-
             .modal-content,
             #photoModalCaption {
                 -webkit-animation-name: zoom;
@@ -108,7 +94,6 @@
                 animation-name: zoom;
                 animation-duration: 0.6s;
             }
-
             @-webkit-keyframes zoom {
                 from {
                     -webkit-transform: scale(0)
@@ -117,7 +102,6 @@
                     -webkit-transform: scale(1)
                 }
             }
-
             @keyframes zoom {
                 from {
                     transform: scale(0)
@@ -126,8 +110,6 @@
                     transform: scale(1)
                 }
             }
-            /* The Close Button */
-
             .close {
                 position: absolute;
                 top: 15px;
@@ -137,15 +119,12 @@
                 font-weight: bold;
                 transition: 0.3s;
             }
-
             .close:hover,
             .close:focus {
                 color: #bbb;
                 text-decoration: none;
                 cursor: pointer;
             }
-            /* 100% Image Width on Smaller Screens */
-
             @media only screen and (max-width: 700px) {
                 .modal-content {
                     width: 100%;
@@ -154,12 +133,11 @@
             /** -------------------------------------------------------------------- */
         </style>
 
-
         <app-drawer-layout fullbleed force-narrow>
             <app-header-layout has-scrolling-region>
                 <app-header slot="header" condenses reveals effects="waterfall">
                     <app-toolbar>
-                        <div main-title>Medias center</div>
+                        <div main-title>[[localize('app.title')]]</div>
                     </app-toolbar>
                 </app-header>
 
@@ -174,7 +152,7 @@
                 <!-- The Modal -->
                 <div id="photoModal" class="modal">
                     <span id="photoModalClose" class="close" on-click="closeModal">&times;</span>
-                    <img class="modal-content" id="img01">
+                    <img class="modal-content" id="photoModalContent">
                     <div id="photoModalCaption"></div>
                 </div>
 
@@ -193,7 +171,7 @@
          * @customElement
          * @polymer
          */
-        class MediasCenterApp extends Polymer.Element {
+        class MediasCenterApp extends LocalizationMixin(Polymer.Element) {
             static get is() {
                 return 'medias-center-app';
             }
@@ -222,7 +200,7 @@
             openModal(e) {
                 const IMG = e.target.shadowRoot.querySelector('iron-image').shadowRoot.querySelector('#img')
                 this.$.photoModal.style.display = "block"
-                this.$.img01.src = IMG.getAttribute('src')
+                this.$.photoModalContent.src = IMG.getAttribute('src')
                 this.$.photoModalCaption.innerHTML = IMG.getAttribute('alt')
             }
             closeModal() {

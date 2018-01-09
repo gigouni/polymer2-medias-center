@@ -1,0 +1,54 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/app-localize-behavior/app-localize-behavior.html">
+
+<script>
+
+/**
+ * ~-~-~-~-~-
+ *  Warning
+ * ~-~-~-~-~-
+ * Do not use arrow functions or ternary statements here. 
+ * It's not allowed and will block your translations or worst, your app.
+ */
+LocalizationMixin = function(superClass) {
+
+  return class extends Polymer.mixinBehaviors([Polymer.AppLocalizeBehavior], superClass) {
+
+    connectedCallback() {
+      super.connectedCallback()
+
+      // Events
+      document.body.addEventListener('lang-change', this._setLang.bind(this))
+      this.addEventListener('app-localize-resources-loaded', function(e) {
+        if(!document.localizationCache) {
+          document.localizationCache = this.resources
+        }
+      }.bind(this))
+
+      // Strings cache
+      // If locales have already been loaded once, use it. 
+      // Otherwise, fetch the i18n.json file.
+      if (!document.localizationCache) {
+        this.loadResources('src/i18n.json')
+      } else {
+        this.resources = document.localizationCache
+      }
+    }
+
+    // Default locale
+    // Reset when *lang-change* event is raised up.
+    static get properties() {
+      return {
+        language: {
+          value: 'fr_FR'
+        }
+      }
+    }
+
+    // Private method to set language when raising up a *lang-change* event.
+    _setLang(e) {
+      this.language = e.detail
+    }
+  }
+}
+</script>
