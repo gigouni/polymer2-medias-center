@@ -22,15 +22,15 @@ function getAllMedias(req, res) {
     LOG.info('In the MediasController::getAllMedias() function.')
     REQUEST_HELPER.getClientIp(req)
     FS.readdir(CONFIG.MEDIAS_PATH_FROM_BACKEND, (err, files) => {
+        let paths = []
         if (err) {
             LOG.error(`Cannot find images in backend: ${err}`)
-            return
+            res.json(paths)
         }
         if (!files || files.length === 0) {
             LOG.error(`No photos found in ${__dirname}/${CONFIG.MEDIAS_PATH_FROM_BACKEND}.`)
-            return
+            res.json(paths)
         }
-        let paths = []
         files.forEach(filename => paths.push({
             filename: `${filename}`,
             path: `${CONFIG.MEDIAS_PATH_FROM_FRONTEND}${filename}`
