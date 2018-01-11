@@ -1,9 +1,11 @@
 {
     "fr_FR": {
-      "app.title": "Centre de médias"
+      "app.title": "Centre de médias",
+      "noEntries": "Aucun média trouvé"
     },
     "en_EN": {
-      "app.title": "Medias center"
+      "app.title": "Medias center",
+      "noEntries": "No media found"
     }
   }
   

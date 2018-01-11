@@ -52,6 +52,12 @@
                 opacity: 0.7;
                 border-radius: 5px;
             }
+
+            .noEntries {
+                text-align: center;
+                font-size: 1.8em;
+                font-weight: 200;
+            }
             /**
              * -------------------------------------------------------------------------------------------------
              * MODAL
@@ -149,6 +155,10 @@
                     </template>
                 </div>
 
+                    <template is="dom-if" if="[[noEntries]]">
+                        <p class="noEntries">[[localize('noEntries')]]</p>
+                    </template>
+
                 <!-- The Modal -->
                 <div id="photoModal" class="modal">
                     <span id="photoModalClose" class="close" on-click="closeModal">&times;</span>
@@ -159,7 +169,7 @@
             </app-header-layout>
         </app-drawer-layout>
 
-        <iron-ajax id="getMedias" method="GET" handle-as="json" on-response="handleMediasResponse" content-type="application/json">
+        <iron-ajax id="getMedias" method="GET" handle-as="json" on-response="handleMediasResponse" on-error="handleMediasError" content-type="application/json">
         </iron-ajax>
 
     </template>
@@ -190,7 +200,14 @@
                 })
             }
             handleMediasResponse(data) {
+                if(data.detail.response.length === 0) {
+                    this.noEntries = true
+                    return
+                }
                 this.medias = data.detail.response
+            }
+            handleMediasError(err) {
+                this.noEntries = true
             }
             getMedias() {
                 this.$.getMedias.url =
