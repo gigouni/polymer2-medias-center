@@ -25,10 +25,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [FRONT][ADD ] Handle gesture lib for mobile users to zoom in/out
 - [FRONT][ADD ] Handle sub-folders
 - [BOTH ][ADD ] Handle file extensions
-- [FRONT][EDIT] Add a message when having no medias coming from backend
 
 ## Unreleased
 
+- [FRONT][EDIT] Add a message when having no medias coming from backend
 - [FRONT][ADD ] i18n
 - [BACK ][EDIT] [Swagger](https://swagger.io/) API
 - [BACK ][ADD ] Method to log client IP requesting resources
