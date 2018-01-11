@@ -26,10 +26,12 @@ function getAllMedias(req, res) {
         if (err) {
             LOG.error(`Cannot find images in backend: ${err}`)
             res.json(paths)
+            return
         }
         if (!files || files.length === 0) {
             LOG.error(`No photos found in ${__dirname}/${CONFIG.MEDIAS_PATH_FROM_BACKEND}.`)
             res.json(paths)
+            return
         }
         files.forEach(filename => paths.push({
             filename: `${filename}`,
