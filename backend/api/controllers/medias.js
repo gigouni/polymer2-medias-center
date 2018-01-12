@@ -37,10 +37,18 @@ function getAllMedias(req, res) {
             return
         }
         files.forEach(filename => {
-            FILE_HELPER.getFileExtension(filename)
+            const RES = FILE_HELPER.getFileExtension(filename)
+            LOG.debug(RES)
+            if(!RES || !RES.extension || !RES.type) {
+                LOG.error('The resulting object is not conform.')
+
+                return
+            }
             paths.push({
+                extension: RES.extension,
                 filename: `${filename}`,
-                path: `${CONFIG.MEDIAS_PATH_FROM_FRONTEND}${filename}`
+                path: `${CONFIG.MEDIAS_PATH_FROM_FRONTEND}${filename}`,
+                type: RES.type
             })
         })
         LOG.info(`Read images: ${JSON.stringify(paths, 0, 2)}`)

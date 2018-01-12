@@ -1,5 +1,3 @@
-
-
 const BUNYAN = require('bunyan')
 const LOG = BUNYAN.createLogger({
     name: 'FileHelper'
@@ -17,19 +15,25 @@ module.exports = {
         if (!filename) {
             LOG.warn(`Missing filename param to get its extension.`)
 
-            return ''
+            return {}
         }
+        LOG.info('------------------------ New file ------------------------')
         LOG.info(`Caught file: ${JSON.stringify(filename)}`)
         let extension = filename.substring(filename.lastIndexOf('.') + 1, filename.length) || filename
         let capitalized = extension.toUpperCase()
         LOG.info(`Caught file extension: ${extension} / ${capitalized}`)
-        if(IMAGES_EXTENSIONS.includes(capitalized)) {
-            LOG.info('IT IS AN IMAGE!')
+        if (IMAGES_EXTENSIONS.includes(capitalized)) {
 
-            return 'image'
+            return {
+                extension: capitalized,
+                type: 'image'
+            }
         }
-        LOG.info('IT IS A VIDEO!')
+        LOG.info('The file is a video. Or something else. But not an image.')
 
-        return 'video'
+        return {
+            extension: capitalized,
+            type: 'video'
+        }
     }
 }
