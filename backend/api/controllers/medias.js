@@ -2,6 +2,7 @@
 
 const CONFIG = require('../../config')
 const REQUEST_HELPER = require('../helpers/requestHelper')
+const FILE_HELPER = require('../helpers/fileHelper')
 const FS = require('fs')
 const BUNYAN = require('bunyan')
 const LOG = BUNYAN.createLogger({
@@ -33,10 +34,13 @@ function getAllMedias(req, res) {
             res.json(paths)
             return
         }
-        files.forEach(filename => paths.push({
-            filename: `${filename}`,
-            path: `${CONFIG.MEDIAS_PATH_FROM_FRONTEND}${filename}`
-        }))
+        files.forEach(filename => {
+            FILE_HELPER.getFileExtension(filename)
+            paths.push({
+                filename: `${filename}`,
+                path: `${CONFIG.MEDIAS_PATH_FROM_FRONTEND}${filename}`
+            })
+        })
         LOG.info(`Read images: ${JSON.stringify(paths, 0, 2)}`)
         res.json(paths)
     })
