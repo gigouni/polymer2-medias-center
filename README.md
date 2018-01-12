@@ -18,3 +18,7 @@ __Backend__
 ```shell
 cd backend && npm run start
 ```
+
+## Resources
+
+- Videos: [www.divx.com/en/devices/profiles/video](www.divx.com/en/devices/profiles/video)
