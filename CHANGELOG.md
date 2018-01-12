@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [FRONT][ADD ] Handle gesture lib for mobile users to zoom in/out
 - [FRONT][ADD ] Handle sub-folders
 - [BOTH ][ADD ] Handle file extensions
+- [BOTH ][ADD ] Tests
 
 ## Unreleased
 
