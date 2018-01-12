@@ -5,6 +5,6 @@
 
 module.exports = {
     BACKEND_PORT: 8002,
-    MEDIAS_PATH_FROM_BACKEND: '../frontend/photos/',
-    MEDIAS_PATH_FROM_FRONTEND: '../photos/'
+    MEDIAS_PATH_FROM_BACKEND: '../frontend/medias/',
+    MEDIAS_PATH_FROM_FRONTEND: '../medias/'
 }

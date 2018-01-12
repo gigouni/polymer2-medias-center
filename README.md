@@ -1,6 +1,6 @@
 # Medias center
 
-A JS project to share photos through a web interface, with Polymer 2 for the frontend and NodeJS 8 for the backend. 
+A JS project to share medias through a web interface, with Polymer 2 for the frontend and NodeJS 8 for the backend. 
 Still not impressive but will pool other famous and innovative technologies (Redux, Docker, Sentry, ...).
 
 Stay tuned!

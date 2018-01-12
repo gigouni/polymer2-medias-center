@@ -29,7 +29,7 @@ function getAllMedias(req, res) {
             return
         }
         if (!files || files.length === 0) {
-            LOG.error(`No photos found in ${__dirname}/${CONFIG.MEDIAS_PATH_FROM_BACKEND}.`)
+            LOG.error(`No medias found in ${__dirname}/${CONFIG.MEDIAS_PATH_FROM_BACKEND}.`)
             res.json(paths)
             return
         }
