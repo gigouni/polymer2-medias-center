@@ -1,7 +1,7 @@
 {
     "name": "medias-center-frontend",
     "version": "1.0.0",
-    "description": "A medias center to pool images and videos through a carousel",
+    "description": "A medias center to pool images and videos",
     "main": "index.js",
     "directories": {
         "src": "src",
@@ -10,10 +10,10 @@
         "test": "test"
     },
     "scripts": {
-        "start": "npm run install_deps && ./node_modules/.bin/polymer serve --hostname 0.0.0.0 --port 8001",
-        "install_deps": "npm i && ./node_modules/.bin/bower i",
-        "check": "./node_modules/.bin/polymer lint",
-        "test": "./node_modules/.bin/polymer test",
+        "start": "npm run install_deps && polymer serve --hostname 0.0.0.0 --port 8001",
+        "install_deps": "npm i && bower i",
+        "check": "polymer lint",
+        "test": "polymer test",
         "clean": "rm -rf node_modules bower_components"
     },
     "repository": {

@@ -8,6 +8,7 @@
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/video-player/video-player.html">
 <link rel="import" href="./localization-mixin.html">
 
 <dom-module id="medias-center-app">
@@ -152,6 +153,18 @@
                         <template is="dom-if" if="[[_isEqualTo(item.type,'image')]]">
                             <div class="image-tile">
                                 <paper-card image="[[item.path]]" alt="[[item.filename]]" on-click="openModal"></paper-card>
+                            </div>
+                        </template>
+
+                        <template is="dom-if" if="[[_isEqualTo(item.type,'video')]]">
+                            <div class="image-tile">
+                                <video-player source="[[item.path]]" height="300px" responsive="true" caption="[[item.filename]]"></video-player>
+                            </div>
+                        </template>
+
+                        <template is="dom-if" if="[[_isEqualTo(item.type,'folder')]]">
+                            <div class="image-tile">
+                                <paper-card image="http://via.placeholder.com/300x300"></paper-card>
                             </div>
                         </template>
                     </template>

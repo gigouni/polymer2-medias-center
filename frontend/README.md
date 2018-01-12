@@ -1,6 +1,6 @@
 # \<polymer2-medias-center\>
 
-A medias center to pool images and videos through a carousel
+A medias center to pool images and videos
 
 ## Install the Polymer-CLI
 
