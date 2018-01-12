@@ -1,4 +1,4 @@
-'use strict'
+
 
 const BUNYAN = require('bunyan')
 const LOG = BUNYAN.createLogger({name: 'RequestHelper'})
@@ -14,9 +14,10 @@ module.exports = {
     getClientIp(req) {
         if(!req) {
             LOG.warn(`Missing req param when trying to get client IP.`)
+
             return
         }
-        let clientIp = req.headers.origin || req.headers.referer || 'unknown'
+        let clientIp = req.headers.origin || req.headers.referer || 'unknown'
         LOG.info(`Client trying to access resource: ${clientIp}`)
     }
 }

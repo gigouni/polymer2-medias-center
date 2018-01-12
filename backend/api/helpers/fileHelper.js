@@ -1,4 +1,4 @@
-'use strict'
+
 
 const BUNYAN = require('bunyan')
 const LOG = BUNYAN.createLogger({
@@ -17,7 +17,7 @@ module.exports = {
         if (!filename) {
             LOG.warn(`Missing filename param to get its extension.`)
 
-            return
+            return ''
         }
         LOG.info(`Caught file: ${JSON.stringify(filename)}`)
         let extension = filename.substring(filename.lastIndexOf('.') + 1, filename.length) || filename
@@ -25,8 +25,11 @@ module.exports = {
         LOG.info(`Caught file extension: ${extension} / ${capitalized}`)
         if(IMAGES_EXTENSIONS.includes(capitalized)) {
             LOG.info('IT IS AN IMAGE!')
-        } else {
-            LOG.info('IT IS A VIDEO!')
+
+            return 'image'
         }
+        LOG.info('IT IS A VIDEO!')
+
+        return 'video'
     }
 }

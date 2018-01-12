@@ -1,4 +1,4 @@
-'use strict'
+
 
 const CONFIG = require('../../config')
 const REQUEST_HELPER = require('../helpers/requestHelper')
@@ -10,7 +10,7 @@ const LOG = BUNYAN.createLogger({
 })
 
 module.exports = {
-    getAllMedias: getAllMedias
+    getAllMedias
 }
 
 /**
@@ -27,11 +27,13 @@ function getAllMedias(req, res) {
         if (err) {
             LOG.error(`Cannot find images in backend: ${err}`)
             res.json(paths)
+
             return
         }
         if (!files || files.length === 0) {
             LOG.error(`No medias found in ${__dirname}/${CONFIG.MEDIAS_PATH_FROM_BACKEND}.`)
             res.json(paths)
+
             return
         }
         files.forEach(filename => {

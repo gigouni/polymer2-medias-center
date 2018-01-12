@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "node app.js | bunyan -o short",
-    "check": "eslint *.js **/*.js --fix",
+    "check": "eslint *.js **/*.js **/**/*.js **/**/**/*.js **/**/**/**/*.js --fix --quiet",
     "edit": "swagger project edit",
     "test": "swagger project test"
   }
