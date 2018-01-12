@@ -21,4 +21,4 @@ cd backend && npm run start
 
 ## Resources
 
-- Videos: [www.divx.com/en/devices/profiles/video](www.divx.com/en/devices/profiles/video)
+- Videos: [www.divx.com/en/devices/profiles/video](www.divx.com/en/devices/profiles/video) & [http://techslides.com/sample-webm-ogg-and-mp4-video-files-for-html5](http://techslides.com/sample-webm-ogg-and-mp4-video-files-for-html5)
