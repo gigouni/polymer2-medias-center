@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [BOTH ][ADD ] Get stats from visits
 - [BOTH ][ADD ] Bind to [Sentry](https://sentry.io/welcome/) to catch logs through an interface
 - [FRONT][ADD ] Switch to previous/next media with arrows images/keyboard keys
+- [FRONT][EDIT] Migrate [Bower to Yarn](https://bower.io/blog/2017/how-to-migrate-away-from-bower/)
 - [BOTH ][ADD ] Handle videos
 - [FRONT][ADD ] Handle gesture lib for mobile users to zoom in/out
 - [FRONT][ADD ] Handle sub-folders
