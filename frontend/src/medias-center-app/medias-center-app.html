@@ -149,9 +149,11 @@
 
                 <div class="images-container">
                     <template is="dom-repeat" items="[[medias]]">
-                        <div class="image-tile">
-                            <paper-card image="[[item.path]]" alt="[[item.filename]]" on-click="openModal"></paper-card>
-                        </div>
+                        <template is="dom-if" if="[[_isEqualTo(item.type,'image')]]">
+                            <div class="image-tile">
+                                <paper-card image="[[item.path]]" alt="[[item.filename]]" on-click="openModal"></paper-card>
+                            </div>
+                        </template>
                     </template>
                 </div>
 
@@ -222,6 +224,9 @@
             }
             closeModal() {
                 this.$.photoModal.style.display = "none"
+            }
+            _isEqualTo(str1, str2) {
+                return str1 === str2
             }
         }
 
