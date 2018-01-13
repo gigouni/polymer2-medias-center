@@ -25,7 +25,7 @@ module.exports = {
         }
         LOG.info('------------------------ New file ------------------------')
         LOG.info(`Caught file: ${JSON.stringify(filename)}`)
-        let extension = filename.substring(filename.lastIndexOf('.') + 1, filename.length) || filename
+        let extension = filename.substring(filename.lastIndexOf('.') + 1, filename.length)
         let capitalized = extension.toUpperCase()
         LOG.info(`Caught file extension: ${extension} / ${capitalized}`)
         if (IMAGES_EXTENSIONS && IMAGES_EXTENSIONS.includes(capitalized)) {
