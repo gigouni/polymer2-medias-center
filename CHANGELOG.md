@@ -13,19 +13,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [FRONT][ADD ] Content pagination
 - [FRONT][ADD ] Spinner for resources requesting
 - [FRONT][EDIT] Switch app spinner for funnier one
-- [BOTH ][EDIT] Update CHANGELOG (PM2, technical explanations, ...)
-- [BOTH ][EDIT] Update README
 - [BOTH ][EDIT] Homogenize .eslintrc
 - [BOTH ][ADD ] Implement Dockerfile and docker-compose.yml
 - [BOTH ][ADD ] Get stats from visits
 - [BOTH ][ADD ] Bind to [Sentry](https://sentry.io/welcome/) to catch logs through an interface
 - [FRONT][ADD ] Switch to previous/next media with arrows images/keyboard keys
 - [FRONT][EDIT] Migrate [Bower to Yarn](https://bower.io/blog/2017/how-to-migrate-away-from-bower/)
-- [BOTH ][ADD ] Handle videos
 - [FRONT][ADD ] Handle gesture lib for mobile users to zoom in/out
 - [FRONT][ADD ] Handle sub-folders
+
+## Progressing
+
 - [BOTH ][ADD ] Handle file extensions
 - [BOTH ][ADD ] Tests & coverage (add to README too)
+- [BOTH ][ADD ] Handle videos
+- [BOTH ][EDIT] Update CHANGELOG (PM2, technical explanations, ...)
+- [BOTH ][EDIT] Update README
 
 ## Unreleased
 
