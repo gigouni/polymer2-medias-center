@@ -13,7 +13,7 @@ produces:
   - application/json
 paths:
   /medias:
-    x-swagger-router-controller: medias
+    x-swagger-router-controller: mediasController
     get:
       description: Returns all medias properties to the caller, without any pagination.
       operationId: getAllMedias
