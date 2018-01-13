@@ -1,5 +1,4 @@
 const assert = require('chai').assert
-const sinon = require('sinon')
 const fileHelper = require('../../../api/helpers/fileHelper')
 
 /* global describe, it */
