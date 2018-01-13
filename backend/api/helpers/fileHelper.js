@@ -41,7 +41,7 @@ module.exports = {
                 type: 'video'
             }
         }
-        LOG.warn('The media is a folder. Or something else. But not an image or a video.')
+        LOG.warn('The media cannot be handled yet. Check its extension before trying again.')
         return {}
     }
 }
