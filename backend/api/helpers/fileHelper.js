@@ -9,9 +9,7 @@ const IMAGES_EXTENSIONS = [
     'JPEG'
 ]
 
-const VIDEOS_EXTENSIONS = [
-    'MP4'
-]
+const VIDEOS_EXTENSIONS = ['MP4']
 
 module.exports = {
 
@@ -30,13 +28,13 @@ module.exports = {
         let extension = filename.substring(filename.lastIndexOf('.') + 1, filename.length) || filename
         let capitalized = extension.toUpperCase()
         LOG.info(`Caught file extension: ${extension} / ${capitalized}`)
-        if (IMAGES_EXTENSIONS.includes(capitalized)) {
+        if (IMAGES_EXTENSIONS && IMAGES_EXTENSIONS.includes(capitalized)) {
             LOG.info('The file is an image.')
             return {
                 extension: capitalized,
                 type: 'image'
             }
-        } else if (VIDEOS_EXTENSIONS.includes(capitalized)) {
+        } else if (VIDEOS_EXTENSIONS && VIDEOS_EXTENSIONS.includes(capitalized)) {
             LOG.info('The file is a video.')
             return {
                 extension: capitalized,
