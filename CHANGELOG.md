@@ -9,7 +9,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - [BOTH ][ADD ] Use [Redux](https://redux.js.org/) as a data store
 - [BOTH ][ADD ] Protect private content behind authentication service
-- [FRONT][ADD ] Full page photos on click
 - [FRONT][ADD ] Filters using properties
 - [FRONT][ADD ] Content pagination
 - [FRONT][ADD ] Spinner for resources requesting
@@ -26,12 +25,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [FRONT][ADD ] Handle gesture lib for mobile users to zoom in/out
 - [FRONT][ADD ] Handle sub-folders
 - [BOTH ][ADD ] Handle file extensions
-- [BOTH ][ADD ] Tests
+- [BOTH ][ADD ] Tests & coverage (add to README too)
 
 ## Unreleased
 
 - [FRONT][EDIT] Add a message when having no medias coming from backend
 - [FRONT][ADD ] i18n
+- [FRONT][ADD ] Full page photos on click
 - [BACK ][EDIT] [Swagger](https://swagger.io/) API
 - [BACK ][ADD ] Method to log client IP requesting resources
 - [BOTH ][EDIT] Generation of two different config files
