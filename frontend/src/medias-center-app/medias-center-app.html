@@ -34,7 +34,7 @@
                 background-color: var(--app-primary-color);
             }
 
-            .images-container {
+            .medias-container {
                 display: flex;
                 flex-flow: row wrap;
                 padding-top: 15px;
@@ -43,7 +43,7 @@
                 justify-content: center;
             }
 
-            .image-tile {
+            .media-tile {
                 min-width: 300px;
                 max-width: 300px;
                 padding: 5px;
@@ -54,7 +54,7 @@
                 border-radius: 5px;
             }
 
-            .noEntries {
+            .no-entries {
                 text-align: center;
                 font-size: 1.8em;
                 font-weight: 200;
@@ -148,30 +148,24 @@
                     </app-toolbar>
                 </app-header>
 
-                <div class="images-container">
+                <div class="medias-container">
                     <template is="dom-repeat" items="[[medias]]">
                         <template is="dom-if" if="[[_isEqualTo(item.type,'image')]]">
-                            <div class="image-tile">
+                            <div class="media-tile">
                                 <paper-card image="[[item.path]]" alt="[[item.filename]]" on-click="openModal"></paper-card>
                             </div>
                         </template>
 
                         <template is="dom-if" if="[[_isEqualTo(item.type,'video')]]">
-                            <div class="image-tile">
+                            <div class="media-tile">
                                 <video-player source="[[item.path]]" height="300px" responsive="true" caption="[[item.filename]]"></video-player>
-                            </div>
-                        </template>
-
-                        <template is="dom-if" if="[[_isEqualTo(item.type,'folder')]]">
-                            <div class="image-tile">
-                                <paper-card image="http://via.placeholder.com/300x300"></paper-card>
                             </div>
                         </template>
                     </template>
                 </div>
 
                     <template is="dom-if" if="[[noEntries]]">
-                        <p class="noEntries">[[localize('noEntries')]]</p>
+                        <p class="no-entries">[[localize('noEntries')]]</p>
                     </template>
 
                 <!-- The Modal -->
