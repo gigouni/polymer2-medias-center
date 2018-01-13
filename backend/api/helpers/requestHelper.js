@@ -9,15 +9,15 @@ module.exports = {
     /**
      * Display client IP to assume who's trying to access resources.
      * @param {Object} req - The request sent by the client to access resource.
-     * @returns {*} Nothing yet.
+     * @returns {String} The client IP hostname.
      */
     getClientIp(req) {
         if(!req) {
             LOG.warn(`Missing req param when trying to get client IP.`)
-
-            return
+            return ''
         }
         let clientIp = req.headers.origin || req.headers.referer || 'unknown'
         LOG.info(`Client trying to access resource: ${clientIp}`)
+        return clientIp
     }
 }
