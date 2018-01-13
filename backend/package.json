@@ -14,6 +14,8 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
+    "istanbul": "^1.1.0-alpha.1",
+    "mocha": "^4.1.0",
     "should": "^7.1.0",
     "supertest": "^1.0.0"
   },
@@ -21,6 +23,7 @@
     "start": "node app.js | bunyan -o short",
     "check": "eslint *.js **/*.js **/**/*.js **/**/**/*.js **/**/**/**/*.js --fix --quiet",
     "edit": "swagger project edit",
-    "test": "swagger project test"
+    "test": "mocha --recursive --exit",
+    "coverage-test": "istanbul cover _mocha -- --recursive --exit"
   }
 }
