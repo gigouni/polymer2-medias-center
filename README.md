@@ -20,7 +20,6 @@ Stay tuned!
         - [1.3.5. NPM scripts](#135-npm-scripts)
             - [1.3.5.1. Frontend](#1351-frontend)
             - [1.3.5.2. Backend](#1352-backend)
-        - [1.3.6. Network](#136-network)
         - [1.3.7. Medias](#137-medias)
         - [1.3.8. Tests and code coverage](#138-tests-and-code-coverage)
     - [1.4. Known issues](#14-known-issues)
@@ -49,11 +48,11 @@ cd backend && npm run start
 
 To set the context, this project has been delivered on a private Raspberry Pi. The following content will try to explain how does it work.
 
-1. When requesting the application with its IP address, you'll request a router which, with port forwarding, will forward the request until the Raspberry Pi and the correct port.
+1. When requesting the application with its IP address, you'll request a router which, with port forwarding, will forward the request to the Raspberry Pi and the correct port.
 1. You'll find the frontend loading the resources (the medias) by sending a GET request to the backend.
 1. The backend will read the folder containing medias to get all the necessary information and fetch it to the frontend.
 1. If an error is raised up, the backend will send it to a Sentry.io dashboard to be able to sum up efficiently received error logs.
-1. To be able to reproduce errors situation and fix it, data will be fetched to a Redux store too.
+1. To be able to reproduce errors situations and fix it, data will be fetched to a Redux store too.
 
 Here a schema for a better comprehension of the workflow.
 
@@ -107,7 +106,36 @@ docker-compose up -d
 
 ### 1.3.3. Delivery
 
-__TODO__: Needs to be completed
+Here _delivery_ means _production_. To set this project in _production_ mode, you have two solutions.
+
+- The _dev_ mode-like
+
+```shell
+# Run the frontend (in a first terminal window)
+cd frontend && npm run start
+
+# Run backend (in another terminal window)
+cd backend && npm run start
+```
+
+and then, you'll need to create services to let it alive when you'll disconnect. You could use _systemd_ process but you'll have a bad time for nothing. Here a good suggestion: [PM2 (Process Manager 2)](https://github.com/Unitech/pm2). With a few commands, your services will be set.
+
+```shell
+cd polymer2-medias-center/frontend/
+pm2 start --name="mediasCenterFrontend" npm -- run start
+cd ../backend/
+pm2 start --name="mediasCenterBackend" npm -- run start
+pm2 startup # run the given command
+pm2 save
+```
+
+And to check how things are going
+
+```shell
+pm2 monit
+```
+
+- You can choose to use _docker-compose_ to set the env. For this part, the Docker images will be stored in an official hub.docker.com repository. Content coming soon...
 
 ### 1.3.4. Configuration
 
@@ -116,7 +144,7 @@ To configure most of the project, two files has been added.
 - [frontend/config.js](frontend/config.js): For frontend configuration
 - [backend/config.js](backend/config.js): For backend configuration
 
-When in _dev_ mode, the frontend runs with a _dev_ version of the config file. When you're setting it in production, you may need to use other configuration.
+When in _dev_ mode, the frontend runs with a _dev_ version of the config file. When you're setting it in production, you may need to use another configuration.
 You'll need to implement the [frontend/config.prod.js](frontend/config.prod.js) file and run
 
 ```shell
@@ -153,12 +181,6 @@ npm run coverage-test
 - __test__: Run tests
 - __coverage-test__: Run tests and set a code coverage status
 
-### 1.3.6. Network
-
-__TODO__: Needs to be completed
-
-(PM2, port forwarding ? --> security, )
-
 ### 1.3.7. Medias
 
 The medias, here images and videos, are currently stored in the [frontend/medias](frontend/medias) folder. Just add yours to see them in the app. If the extension of your file isn't handled yet, you won't see it by the way.
@@ -184,6 +206,8 @@ If you want to know the code coverage status
 npm run code-coverage
 ```
 
+__Nota__
+
 Here the status of the current code coverage status (14th of January, 2018 - 12h45)
 
 ```shell
@@ -199,7 +223,7 @@ Lines        : 90.54% ( 67/74 )
 
 __Pro tip__
 
-Run a server into the ```coverage/lcov-report/``` folder to look at coverage report
+Run a server into the ```coverage/lcov-report/``` folder to take a look at the coverage report
 
 ```shell
 cd backend
