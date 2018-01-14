@@ -20,8 +20,8 @@ Stay tuned!
         - [1.3.5. NPM scripts](#135-npm-scripts)
             - [1.3.5.1. Frontend](#1351-frontend)
             - [1.3.5.2. Backend](#1352-backend)
-        - [1.3.7. Medias](#137-medias)
-        - [1.3.8. Tests and code coverage](#138-tests-and-code-coverage)
+        - [1.3.6. Medias](#136-medias)
+        - [1.3.7. Tests and code coverage](#137-tests-and-code-coverage)
     - [1.4. Known issues](#14-known-issues)
     - [1.5. Improvements](#15-improvements)
     - [1.6. Contributing](#16-contributing)
@@ -181,7 +181,7 @@ npm run coverage-test
 - __test__: Run tests
 - __coverage-test__: Run tests and set a code coverage status
 
-### 1.3.7. Medias
+### 1.3.6. Medias
 
 The medias, here images and videos, are currently stored in the [frontend/medias](frontend/medias) folder. Just add yours to see them in the app. If the extension of your file isn't handled yet, you won't see it by the way.
 
@@ -192,7 +192,7 @@ __Handled extensions__
 
 Some other ones are coming in the future.
 
-### 1.3.8. Tests and code coverage
+### 1.3.7. Tests and code coverage
 
 To run tests
 
