@@ -8,7 +8,7 @@ Stay tuned!
 <!-- TOC -->
 
 - [1. Medias center](#1-medias-center)
-    - [1.1. Getting started](#11-getting-started)
+    - [1.1. Too long, didn't read (tl;dr)](#11-too-long-didnt-read-tldr)
     - [1.2. Functional](#12-functional)
     - [1.3. Technical](#13-technical)
         - [1.3.1. Prerequisites](#131-prerequisites)
@@ -29,7 +29,7 @@ Stay tuned!
 
 <!-- /TOC -->
 
-## 1.1. Getting started
+## 1.1. Too long, didn't read (tl;dr)
 
 __Frontend__
 
