@@ -45,6 +45,8 @@ cd backend && npm run start
 
 __TODO__: Add draw graphic here and some explanations
 
+![Schema Medias Center structure](./Schema_Medias_Center_structure.png "Schema Medias Center structure")
+
 ## 1.3. Technical
 
 ### 1.3.1. Prerequisites
