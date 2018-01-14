@@ -18,6 +18,8 @@ Stay tuned!
         - [1.3.3. Delivery](#133-delivery)
         - [1.3.4. Configuration](#134-configuration)
         - [1.3.5. NPM scripts](#135-npm-scripts)
+            - [1.3.5.1. Frontend](#1351-frontend)
+            - [1.3.5.2. Backend](#1352-backend)
         - [1.3.6. Network](#136-network)
         - [1.3.7. Medias](#137-medias)
         - [1.3.8. Tests and code coverage](#138-tests-and-code-coverage)
@@ -109,11 +111,47 @@ __TODO__: Needs to be completed
 
 ### 1.3.4. Configuration
 
-__TODO__: Needs to be completed
+To configure most of the project, two files has been added.
+
+- [frontend/config.js](frontend/config.js): For frontend configuration
+- [backend/config.js](backend/config.js): For backend configuration
+
+When in _dev_ mode, the frontend runs with a _dev_ version of the config file. When you're setting it in production, you may need to use other configuration.
+You'll need to implement the [frontend/config.prod.js](frontend/config.prod.js) file and run
+
+```shell
+./switchConf.sh
+```
+
+Re-run it to pass from _prod_ mode to _dev_ mode.
 
 ### 1.3.5. NPM scripts
 
-__TODO__: Needs to be completed
+The frontend and backend NPM scripts are pretty much the same. Here are fast explanations of their use.
+
+_Examples_
+
+```shell
+npm run start
+npm run test
+npm run coverage-test
+```
+
+#### 1.3.5.1. Frontend
+
+- __start__: Run the server
+- __install_deps__: Install dependencies
+- __check__: Lint Polymer sources
+- __test__: Run tests
+- __clean__: Remove _node_modules_ and _bower_components_
+
+#### 1.3.5.2. Backend
+
+- __start__: Run the server
+- __check__: Lint sources
+- __edit__: Edit Swagger configuration
+- __test__: Run tests
+- __coverage-test__: Run tests and set a code coverage status
 
 ### 1.3.6. Network
 
@@ -123,19 +161,60 @@ __TODO__: Needs to be completed
 
 ### 1.3.7. Medias
 
-__TODO__: Needs to be completed
+The medias, here images and videos, are currently stored in the [frontend/medias](frontend/medias) folder. Just add yours to see them in the app. If the extension of your file isn't handled yet, you won't see it by the way.
+
+__Handled extensions__
+
+- Images: PNG, JPEG, JPG
+- Videos: MP4, OGG (depending of your browser)
+
+Some other ones are coming in the future.
 
 ### 1.3.8. Tests and code coverage
 
-__TODO__: Needs to be completed
+To run tests
+
+```shell
+npm run test
+```
+
+If you want to know the code coverage status
+
+```shell
+npm run code-coverage
+```
+
+Here the status of the current code coverage status (14th of January, 2018 - 12h45)
+
+```shell
+9 passing (465ms)
+
+=============================== Coverage summary ===============================
+Statements   : 90.54% ( 67/74 )
+Branches     : 84.38% ( 27/32 )
+Functions    : 100% ( 4/4 )
+Lines        : 90.54% ( 67/74 )
+================================================================================
+```
+
+__Pro tip__
+
+Run a server into the ```coverage/lcov-report/``` folder to look at coverage report
+
+```shell
+cd backend
+npm run coverage-test
+cd coverage/lc-report
+../../node_modules/.bin/http-server
+```
 
 ## 1.4. Known issues
 
-__TODO__: Needs to be completed
+See [issues](https://github.com/gigouni/polymer2-medias-center/issues).
 
 ## 1.5. Improvements
 
-__TODO__: Needs to be completed
+See [CHANGELOG](./CHANGELOG.md).
 
 ## 1.6. Contributing
 
