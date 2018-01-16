@@ -9,9 +9,7 @@ const IMAGES_EXTENSIONS = [
     'JPEG'
 ]
 
-const VIDEOS_EXTENSIONS = [
-    'MP4'
-]
+const VIDEOS_EXTENSIONS = ['MP4']
 
 module.exports = {
 
@@ -27,23 +25,23 @@ module.exports = {
         }
         LOG.info('------------------------ New file ------------------------')
         LOG.info(`Caught file: ${JSON.stringify(filename)}`)
-        let extension = filename.substring(filename.lastIndexOf('.') + 1, filename.length) || filename
+        let extension = filename.substring(filename.lastIndexOf('.') + 1, filename.length)
         let capitalized = extension.toUpperCase()
         LOG.info(`Caught file extension: ${extension} / ${capitalized}`)
-        if (IMAGES_EXTENSIONS.includes(capitalized)) {
+        if (IMAGES_EXTENSIONS && IMAGES_EXTENSIONS.includes(capitalized)) {
             LOG.info('The file is an image.')
             return {
                 extension: capitalized,
                 type: 'image'
             }
-        } else if (VIDEOS_EXTENSIONS.includes(capitalized)) {
+        } else if (VIDEOS_EXTENSIONS && VIDEOS_EXTENSIONS.includes(capitalized)) {
             LOG.info('The file is a video.')
             return {
                 extension: capitalized,
                 type: 'video'
             }
         }
-        LOG.warn('The media is a folder. Or something else. But not an image or a video.')
+        LOG.warn('The media cannot be handled yet. Check its extension before trying again.')
         return {}
     }
 }
