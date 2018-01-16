@@ -8,7 +8,6 @@
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
-<link rel="import" href="../../bower_components/video-player/video-player.html">
 <link rel="import" href="./localization-mixin.html">
 
 <dom-module id="medias-center-app">
@@ -157,16 +156,17 @@
                         </template>
 
                         <template is="dom-if" if="[[_isEqualTo(item.type,'video')]]">
-                            <div class="media-tile">
-                                <video-player source="[[item.path]]" height="300px" responsive="true" caption="[[item.filename]]"></video-player>
-                            </div>
+                            <video class="media-tile" controls>
+                                <source src="[[item.path]]" type="video/mp4">
+                                    [[localize('err.browser.support.video')]]
+                            </video>
                         </template>
                     </template>
                 </div>
 
-                    <template is="dom-if" if="[[noEntries]]">
-                        <p class="no-entries">[[localize('noEntries')]]</p>
-                    </template>
+                <template is="dom-if" if="[[noEntries]]">
+                    <p class="no-entries">[[localize('noEntries')]]</p>
+                </template>
 
                 <!-- The Modal -->
                 <div id="photoModal" class="modal">

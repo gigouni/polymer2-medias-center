@@ -1,11 +1,13 @@
 {
     "fr_FR": {
       "app.title": "Centre de médias",
-      "noEntries": "Aucun média trouvé"
+      "noEntries": "Aucun média trouvé",
+      "err.browser.support.video": "Votre navigateur n'est à jour ou n'est pas compatible avec l'affichage de vidéos."
     },
     "en_EN": {
       "app.title": "Medias center",
-      "noEntries": "No media found"
+      "noEntries": "No media found",
+      "err.browser.support.video": "Your browser does not support the video tag."
     }
   }
   
