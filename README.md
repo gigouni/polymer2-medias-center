@@ -170,7 +170,6 @@ npm run coverage-test
 - __start__: Run the server
 - __install_deps__: Install dependencies
 - __check__: Lint Polymer sources
-- __test__: Run tests
 - __clean__: Remove _node_modules_ and _bower_components_
 
 #### 1.3.5.2. Backend
