@@ -24,14 +24,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Progressing
 
-- [BOTH ][ADD ] Handle file extensions
-- [BOTH ][ADD ] Tests & coverage (add to README too)
-- [BOTH ][ADD ] Handle videos
-- [BOTH ][EDIT] Update CHANGELOG (PM2, technical explanations, ...)
-- [BOTH ][EDIT] Update README
+- [FRONT][EDIT] Improve design
 
 ## Unreleased
 
+- [BOTH ][ADD ] Handle file extensions
+- [BOTH ][ADD ] Handle videos
+- [BOTH ][EDIT] Update CHANGELOG
+- [BOTH ][EDIT] Update README (PM2, technical explanations, ...)
+- [BOTH ][ADD ] Tests & coverage (add to README too)
 - [FRONT][EDIT] Add a message when having no medias coming from backend
 - [FRONT][ADD ] i18n
 - [FRONT][ADD ] Full page photos on click
