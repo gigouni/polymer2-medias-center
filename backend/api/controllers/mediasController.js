@@ -1,5 +1,3 @@
-
-
 const CONFIG = require('../../config')
 const REQUEST_HELPER = require('../helpers/requestHelper')
 const FILE_HELPER = require('../helpers/fileHelper')
@@ -22,8 +20,7 @@ module.exports = {
 function getAllMedias(req, res) {
     LOG.info('In the MediasController::getAllMedias() function.')
     REQUEST_HELPER.getClientIp(req)
-    FS.readdir(CONFIG.MEDIAS_PATH_FROM_BACKEND, (err, files) => {
-        let paths = []
+    FS.readdir(CONFIG.MEDIAS_PATH_FROM_BACKEND, async (err, files) => {
         if (err) {
             LOG.error(`Cannot find medias in backend: ${err}`)
             res.json(paths)
@@ -34,21 +31,36 @@ function getAllMedias(req, res) {
             res.json(paths)
             return
         }
-        files.forEach(filename => {
-            const RES = FILE_HELPER.getFileExtension(filename)
-            LOG.debug(RES)
-            if(!RES || !RES.extension || !RES.type) {
-                LOG.warn('The resulting object is not conform. It may be due to an unhandled extension.')
-                return
-            }
-            paths.push({
-                extension: RES.extension,
-                filename: `${filename}`,
-                path: `${CONFIG.MEDIAS_PATH_FROM_FRONTEND}${filename}`,
-                type: RES.type
-            })
+        res.json(await _listFiles(files))
+    })
+}
+
+/**
+ * Prepare a Promise for each file to be able to work asynchronously.
+ * @private
+ * @param {Array} files - The list of files to parse.
+ * @return {Array<Promise>} - A list of Promises which need to be fulfilled to be returned. 
+ */
+function _listFiles(files) {
+    return Promise.all(files.map(file => _getChunk(file)))
+        .then(result => Promise.resolve(result))
+}
+
+/**
+ * Get a bunch of metadata about a specific file, using asynchronous functions.
+ * @private
+ * @param {String} filename - The name of the file.
+ * @return {Promise<Object>} - The file metadata if fulfilled or a message if rejected. 
+ */
+function _getChunk(filename) {
+    return new Promise(async (resolve, reject) => {
+        const res = await FILE_HELPER.getFileExtension(CONFIG.MEDIAS_PATH_FROM_BACKEND + '' + filename)
+        if (!res || !res.type) return reject('The resulting object is not conform. It may be due to an unhandled extension.')
+        resolve({
+            extension: res.extension,
+            filename: `${filename}`,
+            path: `${CONFIG.MEDIAS_PATH_FROM_FRONTEND}${filename}`,
+            type: res.type
         })
-        LOG.info(`Read medias: ${JSON.stringify(paths, 0, 2)}`)
-        res.json(paths)
     })
 }
