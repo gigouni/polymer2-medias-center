@@ -8,18 +8,19 @@
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
-<link rel="import" href="../../bower_components/iron-icons/maps-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/image-icons.html">
 <link rel="import" href="./localization-mixin.html">
 
 <dom-module id="medias-center-app">
     <template>
         <style>
-             :host {
+            :host {
                 display: block;
-                --app-primary-color: #5e42a6;
-                --app-primary-dark-color: #312450;
+                --app-primary-color: #212121;
+                --app-primary-dark-color: #000000;
                 --app-header-font-color: #FFFFFF;
                 font-family: "Roboto", Helvetica, Arial;
+                --iron-icon-fill-color: var(--app-primary-color)
             }
 
             app-drawer-layout:not([narrow]) [drawer-toggle] {
@@ -47,12 +48,20 @@
             .media-tile {
                 min-width: 300px;
                 max-width: 300px;
-                padding: 5px;
+
+                align-items: center;
+                display: flex;
+                background: #424242;
+                margin: 5px;
             }
 
-            paper-card:hover {
+            .media-tile:hover {
                 opacity: 0.7;
-                border-radius: 5px;
+            }
+
+            .media-file {
+                width: 300px;
+                height: 300px;
             }
 
             .no-entries {
@@ -60,12 +69,14 @@
                 font-size: 1.8em;
                 font-weight: 200;
             }
+
             /**
              * -------------------------------------------------------------------------------------------------
              * MODAL
              * -------------------------------------------------------------------------------------------------
              * Source: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal_img
              */
+
             .modal {
                 display: none;
                 position: fixed;
@@ -79,12 +90,14 @@
                 background-color: rgb(0, 0, 0);
                 background-color: rgba(0, 0, 0, 0.9);
             }
+
             .modal-content {
                 margin: auto;
                 display: block;
                 width: 80%;
                 max-width: 700px;
             }
+
             #photoModalCaption {
                 margin: auto;
                 display: block;
@@ -95,6 +108,7 @@
                 padding: 10px 0;
                 height: 150px;
             }
+
             .modal-content,
             #photoModalCaption {
                 -webkit-animation-name: zoom;
@@ -102,6 +116,7 @@
                 animation-name: zoom;
                 animation-duration: 0.6s;
             }
+
             @-webkit-keyframes zoom {
                 from {
                     -webkit-transform: scale(0)
@@ -110,6 +125,7 @@
                     -webkit-transform: scale(1)
                 }
             }
+
             @keyframes zoom {
                 from {
                     transform: scale(0)
@@ -118,6 +134,7 @@
                     transform: scale(1)
                 }
             }
+
             .close {
                 position: absolute;
                 top: 15px;
@@ -127,17 +144,20 @@
                 font-weight: bold;
                 transition: 0.3s;
             }
+
             .close:hover,
             .close:focus {
                 color: #bbb;
                 text-decoration: none;
                 cursor: pointer;
             }
+
             @media only screen and (max-width: 700px) {
                 .modal-content {
                     width: 100%;
                 }
             }
+
             /** -------------------------------------------------------------------- */
         </style>
 
@@ -151,22 +171,25 @@
 
                 <div class="medias-container">
                     <template is="dom-repeat" items="[[medias]]">
-                        <template is="dom-if" if="[[_isEqualTo(item.type,'image')]]">
-                            <div class="media-tile">
-                                <paper-card image="[[item.path]]" alt="[[item.filename]]" on-click="openModal"></paper-card>
-                            </div>
-                        </template>
+                        <div class="media-tile">
 
-                        <template is="dom-if" if="[[_isEqualTo(item.type,'video')]]">
-                            <video class="media-tile" controls>
-                                <source src="[[item.path]]" type="video/mp4">
-                                    [[localize('err.browser.support.video')]]
-                            </video>
-                        </template>
+                            <!-- Images -->
+                            <template is="dom-if" if="[[_isEqualTo(item.type,'image')]]">
+                                <paper-card image="[[item.path]]" alt="#[[_getComputedIndex(index)]] - [[item.filename]]" on-click="openModal"></paper-card>
+                            </template>
 
-                        <template is="dom-if" if="[[_isEqualTo(item.type,'folder')]]">
-                            <iron-icon icon="maps:directions-bus"></iron-icon>
-                        </template>
+                            <!-- Videos -->
+                            <template is="dom-if" if="[[_isEqualTo(item.type,'video')]]">
+                                <video class="media-file" controls>
+                                    <source src="[[item.path]]" type="video/mp4"> [[localize('err.browser.support.video')]]
+                                </video>
+                            </template>
+
+                            <!-- Folders -->
+                            <template is="dom-if" if="[[_isEqualTo(item.type,'folder')]]">
+                                <iron-icon class="media-file" icon="image:collections" on-click="openFolder"></iron-icon>
+                            </template>
+                        </div>
                     </template>
                 </div>
 
@@ -176,9 +199,11 @@
 
                 <!-- The Modal -->
                 <div id="photoModal" class="modal">
+                    <div>TEST AVANT</div>
                     <span id="photoModalClose" class="close" on-click="closeModal">&times;</span>
                     <img class="modal-content" id="photoModalContent">
                     <div id="photoModalCaption"></div>
+                    <div style="font: white;">TEST APRES</div>
                 </div>
 
             </app-header-layout>
@@ -209,13 +234,13 @@
 
                 // Close modal if ESC is keydowned
                 document.addEventListener('keydown', event => {
-                    if(event && event.keyCode === 27) {
+                    if (event && event.keyCode === 27) {
                         this.closeModal()
                     }
                 })
             }
             handleMediasResponse(data) {
-                if(data.detail.response.length === 0) {
+                if (data.detail.response.length === 0) {
                     this.noEntries = true
                     return
                 }
@@ -230,17 +255,25 @@
                     `${window.config.LOCAL_HOST}:${window.config.BACKEND_PORT}${window.config.API_ALL_MEDIAS}`
                 return this.$.getMedias.generateRequest()
             }
+            openFolder(e) {
+                alert(
+                    'Vous avez cliqué sur un dossier. La gestion de ces derniers n\'est pas encore implémentée.'
+                )
+            }
             openModal(e) {
-                const IMG = e.target.shadowRoot.querySelector('iron-image').shadowRoot.querySelector('#img')
+                const img = e.target.shadowRoot.querySelector('iron-image').shadowRoot.querySelector('#img')
                 this.$.photoModal.style.display = "block"
-                this.$.photoModalContent.src = IMG.getAttribute('src')
-                this.$.photoModalCaption.innerHTML = IMG.getAttribute('alt')
+                this.$.photoModalContent.src = img.getAttribute('src')
+                this.$.photoModalCaption.innerHTML = img.getAttribute('alt')
             }
             closeModal() {
                 this.$.photoModal.style.display = "none"
             }
             _isEqualTo(str1, str2) {
                 return str1 === str2
+            }
+            _getComputedIndex(index) {
+                return index + 1
             }
         }
 
