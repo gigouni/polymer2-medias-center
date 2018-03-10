@@ -175,7 +175,8 @@
 
                             <!-- Images -->
                             <template is="dom-if" if="[[_isEqualTo(item.type,'image')]]">
-                                <paper-card image="[[item.path]]" alt="#[[_getComputedIndex(index)]] - [[item.filename]]" on-click="openModal"></paper-card>
+                                <paper-card image="[[item.path]]" alt="#[[_getComputedIndex(index)]] - [[item.filename]]" data-index$="[[_getComputedIndex(index)]]"
+                                    on-click="openModal"></paper-card>
                             </template>
 
                             <!-- Videos -->
@@ -199,11 +200,9 @@
 
                 <!-- The Modal -->
                 <div id="photoModal" class="modal">
-                    <div>TEST AVANT</div>
                     <span id="photoModalClose" class="close" on-click="closeModal">&times;</span>
                     <img class="modal-content" id="photoModalContent">
                     <div id="photoModalCaption"></div>
-                    <div style="font: white;">TEST APRES</div>
                 </div>
 
             </app-header-layout>
@@ -238,6 +237,21 @@
                         this.closeModal()
                     }
                 })
+
+                // Go to previous media
+                document.addEventListener('keydown', event => {
+                    if (event && (event.keyCode === 37 || event.keyCode === 38)) {
+                        this.changeModalContent('previous')
+                    }
+                })
+
+                // Go to next media
+                document.addEventListener('keydown', event => {
+                    if (event && (event.keyCode === 39 || event.keyCode === 40)) {
+                    // if (event && event.keyCode === 39) {
+                        this.changeModalContent('next')
+                    }
+                })
             }
             handleMediasResponse(data) {
                 if (data.detail.response.length === 0) {
@@ -245,7 +259,6 @@
                     return
                 }
                 this.medias = data.detail.response
-                console.log(this.medias)
             }
             handleMediasError(err) {
                 this.noEntries = true
@@ -261,19 +274,40 @@
                 )
             }
             openModal(e) {
-                const img = e.target.shadowRoot.querySelector('iron-image').shadowRoot.querySelector('#img')
+                const paperCard = e.target
+                const img = paperCard.shadowRoot.querySelector('iron-image').shadowRoot.querySelector('#img')
                 this.$.photoModal.style.display = "block"
+                this.$.photoModal.dataset.index = paperCard.dataset.index
                 this.$.photoModalContent.src = img.getAttribute('src')
                 this.$.photoModalCaption.innerHTML = img.getAttribute('alt')
             }
             closeModal() {
                 this.$.photoModal.style.display = "none"
             }
+            changeModalContent(direction) {
+                if (this.isModalOpened()) {
+                    // Check current index to avoid this.medias overflow
+                    const currentIndex = parseInt(this.$.photoModal.dataset.index)
+                    if(direction === 'previous' && currentIndex > 0) {
+                        this.$.photoModal.dataset.index = currentIndex - 1
+                    } else if (direction === 'next' && currentIndex < this.medias.length - 1) {
+                        this.$.photoModal.dataset.index = currentIndex + 1
+                    }
+                    // Set the new modal content
+                    const newIndex = this.$.photoModal.dataset.index
+                    this.$.photoModalContent.src = this.medias[newIndex].path
+                    this.$.photoModalCaption.innerHTML = this.medias[newIndex].filename
+                }
+            }
             _isEqualTo(str1, str2) {
                 return str1 === str2
             }
             _getComputedIndex(index) {
                 return index + 1
+            }
+            isModalOpened() {
+                const display = this.$.photoModal.style.display
+                return !(display === 'none' || display === undefined || display.length === 0)
             }
         }
 
