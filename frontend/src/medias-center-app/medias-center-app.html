@@ -8,6 +8,7 @@
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/iron-icons/maps-icons.html">
 <link rel="import" href="./localization-mixin.html">
 
 <dom-module id="medias-center-app">
@@ -162,6 +163,10 @@
                                     [[localize('err.browser.support.video')]]
                             </video>
                         </template>
+
+                        <template is="dom-if" if="[[_isEqualTo(item.type,'folder')]]">
+                            <iron-icon icon="maps:directions-bus"></iron-icon>
+                        </template>
                     </template>
                 </div>
 
@@ -215,6 +220,7 @@
                     return
                 }
                 this.medias = data.detail.response
+                console.log(this.medias)
             }
             handleMediasError(err) {
                 this.noEntries = true
