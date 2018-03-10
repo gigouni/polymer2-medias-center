@@ -1,42 +1,70 @@
 const assert = require('chai').assert
+const sinon = require('sinon')
 const fileHelper = require('../../../api/helpers/fileHelper')
 
-/* global describe, it */
+const SAMPLES_PATH = `${__dirname}/../../samples`
+
+/* global describe, it, beforeEach, afterEach */
 
 describe('FileHelper', () => {
+
+    let sandbox
+    beforeEach(() => sandbox = sinon.sandbox.create())
+    afterEach(() => sandbox.restore())
 
     describe('#getFileExtension', () => {
 
         it('should fail if no filename', () => {
-            let filename = null
-            let extension = fileHelper.getFileExtension(filename)
-            assert.exists(extension)
-            assert.deepEqual(extension, {})
+            const result = fileHelper.getFileExtension(null)
+            assert.deepEqual(result, {})
         })
 
-        it('should succeed (image version)', () => {
-            let filename = 'example.png'
-            let res = fileHelper.getFileExtension(filename)
-            assert.exists(res)
-            assert.equal(res.extension, 'PNG')
-            assert.equal(res.type, 'image')
+        it('should fail if the filename is refering to unexisting file', () => {
+            try {
+                const result = fileHelper.getFileExtension(`${SAMPLES_PATH}/notAnExistingFile.png`)
+                assert.fail(0, 1, `Should not be able to succeed to get extension of not existing file: ${result}`)
+            } catch (err) {
+                assert.equal(err.message, 'ENOENT: no such file or directory, lstat \'/home/gigouni/dev/apps/polymer2-medias-center/backend/test/api/helpers/../../samples/notAnExistingFile.png\'')
+            }
         })
 
+        describe('--> images', () => {
+            it('should fail the extension is not handled yet', () => {
+                const result = fileHelper.getFileExtension(`${SAMPLES_PATH}/example.bmp`)
+                assert.deepEqual(result, {})
+            })
 
-        it('should fail if the extension is not handled yet (video version - AVI)', () => {
-            let filename = 'example.avi'
-            let extension = fileHelper.getFileExtension(filename)
-            assert.exists(extension)
-            assert.deepEqual(extension, {})
+            it('should succeed if the extension is handled', () => {
+                const result = fileHelper.getFileExtension(`${SAMPLES_PATH}/example.png`)
+                assert.deepEqual(result, {
+                    extension: 'PNG',
+                    type: 'image'
+                })
+            })
         })
 
+        describe('--> videos', () => {
+            it('should fail the extension is not handled yet', () => {
+                const result = fileHelper.getFileExtension(`${SAMPLES_PATH}/example.avi`)
+                assert.deepEqual(result, {})
+            })
 
-        it('should succeed (video version)', () => {
-            let filename = 'example.mp4'
-            let res = fileHelper.getFileExtension(filename)
-            assert.exists(res)
-            assert.equal(res.extension, 'MP4')
-            assert.equal(res.type, 'video')
+            it('should succeed if the extension is handled', () => {
+                const result = fileHelper.getFileExtension(`${SAMPLES_PATH}/example.mp4`)
+                assert.deepEqual(result, {
+                    extension: 'MP4',
+                    type: 'video'
+                })
+            })
+        })
+
+        describe('--> folders', () => {
+            it('should succeed if the element is a folder', () => {
+                const result = fileHelper.getFileExtension(`${SAMPLES_PATH}/folder/`)
+                assert.deepEqual(result, {
+                    type: 'folder'
+                })
+            })
         })
     })
 

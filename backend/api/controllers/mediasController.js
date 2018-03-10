@@ -1,9 +1,9 @@
-const CONFIG = require('../../config')
-const REQUEST_HELPER = require('../helpers/requestHelper')
-const FILE_HELPER = require('../helpers/fileHelper')
-const FS = require('fs')
-const BUNYAN = require('bunyan')
-const LOG = BUNYAN.createLogger({
+const config = require('../../config')
+const requestHelper = require('../helpers/requestHelper')
+const fileHelper = require('../helpers/fileHelper')
+const fs = require('fs')
+const bunyan = require('bunyan')
+const log = bunyan.createLogger({
     name: 'MediasController'
 })
 
@@ -18,20 +18,31 @@ module.exports = {
  * @returns {Array|Error} The list of medias paths or an error.
  */
 function getAllMedias(req, res) {
-    LOG.info('In the MediasController::getAllMedias() function.')
-    REQUEST_HELPER.getClientIp(req)
-    FS.readdir(CONFIG.MEDIAS_PATH_FROM_BACKEND, async (err, files) => {
+    log.info('In the MediasController::getAllMedias() function.')
+    requestHelper.getClientIp(req)
+    fs.readdir(config.MEDIAS_PATH_FROM_BACKEND, async (err, files) => {
         if (err) {
-            LOG.error(`Cannot find medias in backend: ${err}`)
-            res.json(paths)
+            log.error(`Cannot find medias in backend: ${err}`)
+            res.json([])
             return
         }
         if (!files || files.length === 0) {
-            LOG.error(`No medias found in ${__dirname}/${CONFIG.MEDIAS_PATH_FROM_BACKEND}.`)
-            res.json(paths)
+            log.error(`No medias found in ${__dirname}/${config.MEDIAS_PATH_FROM_BACKEND}.`)
+            res.json([])
             return
         }
-        res.json(await _listFiles(files))
+
+        let list
+        try {
+            list = await _listFiles(files)
+            // Remove empty objects from array
+            list = list.filter(value => Object.keys(value).length !== 0) 
+        } catch (e) {
+            log.warn(`Cannot list files: ${e}`)
+            list = []
+        }
+
+        res.json(list)
     })
 }
 
@@ -53,13 +64,13 @@ function _listFiles(files) {
  * @return {Promise<Object>} - The file metadata if fulfilled or a message if rejected. 
  */
 function _getChunk(filename) {
-    return new Promise(async (resolve, reject) => {
-        const res = await FILE_HELPER.getFileExtension(CONFIG.MEDIAS_PATH_FROM_BACKEND + '' + filename)
-        if (!res || !res.type) return reject('The resulting object is not conform. It may be due to an unhandled extension.')
+    return new Promise((resolve, reject) => {
+        const res = fileHelper.getFileExtension(config.MEDIAS_PATH_FROM_BACKEND + '' + filename)
+        if (!res || !res.type) resolve({})
         resolve({
             extension: res.extension,
             filename: `${filename}`,
-            path: `${CONFIG.MEDIAS_PATH_FROM_FRONTEND}${filename}`,
+            path: `${config.MEDIAS_PATH_FROM_FRONTEND}${filename}`,
             type: res.type
         })
     })
