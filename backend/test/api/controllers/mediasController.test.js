@@ -43,6 +43,11 @@ describe('MediasController', () => {
                             "type": "image"
                         },
                         {
+                            "filename": "folderTest",
+                            "path": "../medias/folderTest",
+                            "type": "folder"
+                        },
+                        {
                             "extension": "MP4",
                             "filename": "small.mp4",
                             "path": "../medias/small.mp4",
