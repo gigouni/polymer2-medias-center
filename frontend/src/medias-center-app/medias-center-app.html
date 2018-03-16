@@ -69,96 +69,6 @@
                 font-size: 1.8em;
                 font-weight: 200;
             }
-
-            /**
-             * -------------------------------------------------------------------------------------------------
-             * MODAL
-             * -------------------------------------------------------------------------------------------------
-             * Source: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal_img
-             */
-
-            .modal {
-                display: none;
-                position: fixed;
-                z-index: 1;
-                padding-top: 100px;
-                left: 0;
-                top: 64px;
-                width: 100%;
-                height: 100%;
-                overflow: auto;
-                background-color: rgb(0, 0, 0);
-                background-color: rgba(0, 0, 0, 0.9);
-            }
-
-            .modal-content {
-                margin: auto;
-                display: block;
-                width: 80%;
-                max-width: 700px;
-            }
-
-            #photoModalCaption {
-                margin: auto;
-                display: block;
-                width: 80%;
-                max-width: 700px;
-                text-align: center;
-                color: #ccc;
-                padding: 10px 0;
-                height: 150px;
-            }
-
-            .modal-content,
-            #photoModalCaption {
-                -webkit-animation-name: zoom;
-                -webkit-animation-duration: 0.6s;
-                animation-name: zoom;
-                animation-duration: 0.6s;
-            }
-
-            @-webkit-keyframes zoom {
-                from {
-                    -webkit-transform: scale(0)
-                }
-                to {
-                    -webkit-transform: scale(1)
-                }
-            }
-
-            @keyframes zoom {
-                from {
-                    transform: scale(0)
-                }
-                to {
-                    transform: scale(1)
-                }
-            }
-
-            .close {
-                position: absolute;
-                top: 15px;
-                right: 35px;
-                color: #f1f1f1;
-                font-size: 40px;
-                font-weight: bold;
-                transition: 0.3s;
-            }
-
-            .close:hover,
-            .close:focus {
-                color: #bbb;
-                text-decoration: none;
-                cursor: pointer;
-            }
-
-            @media only screen and (max-width: 700px) {
-                .modal-content {
-                    width: 100%;
-                }
-            }
-
-            /** -------------------------------------------------------------------- */
         </style>
 
         <app-drawer-layout fullbleed force-narrow>
@@ -198,10 +108,10 @@
                 </template>
 
                 <!-- The Modal -->
-                <div id="photoModal" class="modal">
-                    <span id="photoModalClose" class="close" on-click="closeModal">&times;</span>
-                    <img class="modal-content" id="photoModalContent">
-                    <div id="photoModalCaption"></div>
+                <div id="mediaModal" class="modal">
+                    <span id="mediaModalClose" class="close" on-click="closeModal">&times;</span>
+                    <img class="modal-content" id="mediaModalContent">
+                    <div id="mediaModalCaption"></div>
                 </div>
 
             </app-header-layout>
@@ -213,6 +123,7 @@
     </template>
 
     <script src="../../config.js"></script>
+    <script src="../js/modal.js"></script>
 
     <script>
         /**
@@ -306,17 +217,17 @@
             openModal(e) {
                 const paperCard = e.target
                 const img = paperCard.shadowRoot.querySelector('iron-image').shadowRoot.querySelector('#img')
-                this.$.photoModal.style.display = "block"
-                this.$.photoModal.dataset.index = paperCard.dataset.index
-                this.$.photoModalContent.src = img.getAttribute('src')
-                this.$.photoModalCaption.innerHTML = img.getAttribute('alt')
+                this.$.mediaModal.style.display = "block"
+                this.$.mediaModal.dataset.index = paperCard.dataset.index
+                this.$.mediaModalContent.src = img.getAttribute('src')
+                this.$.mediaModalCaption.innerHTML = img.getAttribute('alt')
             }
 
             /**
              * Edit modal display settings to hide it.
              */
             closeModal() {
-                this.$.photoModal.style.display = "none"
+                this.$.mediaModal.style.display = "none"
             }
 
             /**
@@ -326,32 +237,32 @@
             changeModalContent(direction) {
                 if (this.isModalOpened()) {
                     // Check current index to avoid this.medias overflow
-                    const currentIndex = parseInt(this.$.photoModal.dataset.index)
+                    const currentIndex = parseInt(this.$.mediaModal.dataset.index)
                     if (direction === 'previous' && currentIndex > 0) {
-                        this.$.photoModal.dataset.index = currentIndex - 1
+                        this.$.mediaModal.dataset.index = currentIndex - 1
                     } else if (direction === 'next' && currentIndex < this.medias.length - 1) {
-                        this.$.photoModal.dataset.index = currentIndex + 1
+                        this.$.mediaModal.dataset.index = currentIndex + 1
                     } else {
                         return false
                     }
                     // Set the new modal content
-                    const newIndex = this.$.photoModal.dataset.index
+                    const newIndex = this.$.mediaModal.dataset.index
                     const newMedia = this.medias[newIndex]
                     if (newMedia.type === 'image') {
                         if (this.medias[currentIndex].type === 'video') {
-                            this.$.photoModal.querySelector('img').style.display = 'block'
-                            this.$.photoModal.querySelector('video').style.display = 'none'
+                            this.$.mediaModal.querySelector('img').style.display = 'block'
+                            this.$.mediaModal.querySelector('video').style.display = 'none'
                         }
-                        this.$.photoModalContent.src = newMedia.path
-                        this.$.photoModalCaption.innerHTML = newMedia.filename
+                        this.$.mediaModalContent.src = newMedia.path
+                        this.$.mediaModalCaption.innerHTML = newMedia.filename
                     } else if (newMedia.type === 'video') {
                         // Add potential previous image HTML element
                         if (this.medias[currentIndex].type === 'image') {
-                            this.$.photoModal.querySelector('img').style.display = 'none'
+                            this.$.mediaModal.querySelector('img').style.display = 'none'
                         }
 
                         // Check if video tag has already been added to the DOM
-                        const existingVideoInDOM = this.$.photoModal.querySelector('video')
+                        const existingVideoInDOM = this.$.mediaModal.querySelector('video')
                         if (existingVideoInDOM) {
                             // Don't create it again, just change its path/source attribute
                             existingVideoInDOM.src = newMedia.path
@@ -362,13 +273,13 @@
                             newVideoInDOM.controls = true
                             newVideoInDOM.src = newMedia.path
                             newVideoInDOM.className = 'modal-content'
-                            const photoModalClose = this.$.photoModal.querySelector('#photoModalClose')
-                            photoModalClose.parentNode.insertBefore(newVideoInDOM, photoModalClose.nextSibling)
+                            const mediaModalClose = this.$.mediaModal.querySelector('#mediaModalClose')
+                            mediaModalClose.parentNode.insertBefore(newVideoInDOM, mediaModalClose.nextSibling)
                         }
-                        this.$.photoModalCaption.innerHTML = `${newMedia.filename} - vidéo`
+                        this.$.mediaModalCaption.innerHTML = `${newMedia.filename} - vidéo`
                     } else if (newMedia.type === 'folder') {
-                        this.$.photoModalContent.src = `${window.config.PATH_STATIC_IMAGES}/folder.jpg`
-                        this.$.photoModalCaption.innerHTML =
+                        this.$.mediaModalContent.src = `${window.config.PATH_STATIC_IMAGES}/folder.jpg`
+                        this.$.mediaModalCaption.innerHTML =
                             `${newMedia.filename} - Dossier de médias.`
                     }
                 }
@@ -398,7 +309,7 @@
              * @return {Boolean} - True if the modal if currently displayed, false otherwise.
              */
             isModalOpened() {
-                const display = this.$.photoModal.style.display
+                const display = this.$.mediaModal.style.display
                 return !(display === 'none' || display === undefined || display.length === 0)
             }
         }
